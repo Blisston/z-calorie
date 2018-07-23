@@ -1,0 +1,57 @@
+.background
+{
+  background-image:linear-gradient(rgba(241,196,15,0.8),rgba(241,196,15,0.8)), url("../../assets/Images/Food.jpeg");
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+}
+.navbar1
+{
+  margin: 0;
+	padding-top:10px;
+  text-align: center;
+}
+
+.navbar1 a
+{
+    color: #fff;
+    text-decoration: none;
+    font-size:20px;
+    font-family: lato;
+    letter-spacing: 3px;
+    font-weight: 500;
+    margin: 0px 10px;
+    padding: 10px 10px;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+}
+div.bordera a:before, div.bordera a:after
+{
+    position: absolute;
+    opacity: 0;
+    width: 0%;
+    height: 2px;
+    content: '';
+    background: #FFF;
+    transition: all 0.3s;
+}
+
+div.bordera a:before
+{
+    left: 0px;
+    top: 0px;
+}
+
+div.bordera a:after
+{
+    right: 0px;
+    bottom: 0px;
+}
+
+div.bordera a:hover:before, div.bordera a:hover:after
+{
+    opacity: 1;
+    width: 100%;
+}
