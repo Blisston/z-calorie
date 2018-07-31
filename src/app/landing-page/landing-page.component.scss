@@ -3,6 +3,7 @@
   background-image:linear-gradient(rgba(241,196,15,0.8),rgba(241,196,15,0.8)), url("../../assets/Images/Food.jpeg");
   background-position: center;
   background-size: cover;
+  background-attachment:fixed;
   height: 100vh;
   width: 100%;
 }
@@ -18,9 +19,7 @@
     color: #fff;
     text-decoration: none;
     font-size:20px;
-    font-family: lato;
     letter-spacing: 3px;
-    font-weight: 500;
     margin: 0px 10px;
     padding: 10px 10px;
     position: relative;
@@ -54,4 +53,319 @@ div.bordera a:hover:before, div.bordera a:hover:after
 {
     opacity: 1;
     width: 100%;
+}
+.headBack
+{
+  position: absolute;
+  top:20%;
+  left: 10%;
+    background-color: #fff;
+    height: 40%;
+    width: 35%;
+}
+.headBack h1{
+ padding-top: 10%;
+ font-size: 360%;
+ font-weight: 700;
+ padding-left: 10%;
+ background:linear-gradient(rgba(241,196,15,0.8),rgba(241,196,15,0.8)),  url("../../assets/Images/Food.jpeg");
+ background-position: center;
+ background-size: cover;
+ color: rgba(0, 0, 0, 0);
+ -webkit-background-clip: text;
+ background-clip: text;
+ position: relative;
+}
+h1 span{
+  position: absolute;
+  left:10%;
+  top:88%;
+  background:linear-gradient(rgba(241,196,15,0.8),rgba(241,196,15,0.8)),  url("../../assets/Images/Food.jpeg");
+ background-position: center;
+ background-size: cover;
+ -webkit-background-clip: text;
+ background-clip: text;
+ overflow: hidden;
+ animation : wordchange 5s linear infinite;
+ opacity: 0;
+}
+.headbottom
+{
+  position: absolute;
+  top: 87%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+.tryoutbutton
+{
+  color:#fff !important;
+  border: 2px solid #fff;
+  border-radius: 5%;
+  padding: 8px 20px;
+  word-spacing: 3px;
+  font-size:20px;
+  transition:.3s;
+}
+.tryoutbutton:hover{
+  color: (rgb(241,196,15)) !important;
+  background-color: white;
+}
+
+@keyframes wordchange
+{
+  0%{
+    opacity: 0;
+  transform: translateY(-50px);}
+  28%{
+    opacity: 0;
+  transform: translateY(-50px);}
+  30%{
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  68%{
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  70%{
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100%{
+    opacity: 0;
+    transform: translateY(50px);
+  }
+}
+h1 span:nth-child(1)
+{
+  animation-delay: 0s;
+}
+h1 span:nth-child(2)
+{
+  animation-delay: 2s;
+}
+
+.try{
+  height: 100vh;
+  color:#eee;
+  position: relative;
+  background:  url("../../assets/Images/3.jpeg");
+  background-position: center;
+  background-size: cover;
+
+}
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.formsty
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 2px 10px -1px rgba(0, 0, 0, 0.19);
+  padding: 4%;
+  background-color:white;
+border-radius: 5px;
+color:black;
+outline-offset: 20px;
+outline:15px solid #f1c40f;
+}
+.caloriebtn
+{
+  background-color: #ffff !important;
+  border: 2px solid #f1c40f;
+  border-radius: 5%;
+  color: white;
+  padding: 8px 20px;
+  word-spacing: 3px;
+  font-size:20px;
+  transition:.3s;
+  cursor: pointer;
+}
+.caloriebtn:hover{
+  color: white !important;
+  background-color: #f1c40f !important;
+  border: 2px solid #f1c40f;
+}
+#myFooter {
+	background-color: #373a48;
+	color:white;
+}
+.featuresmain
+{
+  height: 100vh;
+  margin-top: 80px;
+  background:linear-gradient(rgba(241,196,15,0.8),rgba(241,196,15,0.8)),  url("../../assets/Images/5.jpeg");
+  background-position: center;
+  background-size: cover;
+  margin: 0;
+  padding: 5%;
+  background-attachment: fixed;
+  padding-top: 10%;
+}
+
+  .row
+  {
+    margin-left: auto;
+    height:auto;
+    margin-top:20px;
+
+
+  }
+.features
+{
+  background-color: rgba(255,255,255,.8);
+  margin-right: 60px;
+  border-radius: 3px;
+  height:auto;
+  font-size: 13px;
+  color:#777;
+  width: 20%;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 1.5rem 4rem rgba(0,0,0,0.15);
+  transition: .3s;
+  .icon{
+    font-size: 60px;
+    display: inline-block;
+    background-image: linear-gradient(to right,rgba(241,196,15,0.8),rgba(241,196,15,0.8));
+    -webkit-background-clip: text;
+    color: transparent;
+
+  }
+  .feature-box__text
+  {
+    line-height: 1.7;
+
+  }
+  h5{
+    font-size: 15px;
+    font-weight: 500;
+    color:rgb(70, 69, 69);
+  }
+}
+.features:hover{
+  transform: translateY(-15px) scale(1.03);
+
+}
+
+
+
+
+
+
+
+#myFooter .footer-copyright{
+	background-color: #383737;
+	padding-top:3px;
+	padding-bottom:3px;
+	text-align: center;
+}
+
+#myFooter .footer-copyright p{
+	margin:10px;
+	color: #ccc;
+}
+
+#myFooter ul{
+	list-style-type: none;
+    padding-left: 0;
+    line-height: 1.7;
+
+}
+
+#myFooter h5{
+	font-size: 18px;
+    color: white;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+#myFooter a{
+	color:#d2d1d1;
+	text-decoration: none;
+}
+
+#myFooter a:hover, #myFooter a:focus{
+	text-decoration: none;
+	color:white;
+}
+
+#myFooter .myCols{
+	text-align: center;
+}
+
+#myFooter .social-networks{
+	text-align: center;
+	padding-top: 30px;
+	padding-bottom: 38px;
+}
+
+#myFooter .social-networks a{
+    font-size: 32px;
+    margin-right: 5px;
+    margin-left: 5px;
+    color: #f9f9f9;
+    padding: 10px;
+    transition: 0.2s;
+}
+
+#myFooter .social-networks a:hover{
+	text-decoration: none;
+
+}
+
+#myFooter .facebook:hover{
+	color:#0077e2;
+}
+
+#myFooter .google:hover{
+	color:#ef1a1a;
+}
+
+#myFooter .twitter:hover{
+	color: #00aced;
+}
+
+@media screen and (max-width: 767px){
+	#myFooter {
+		text-align: center;
+	}
+}
+
+
+
+/* CSS used for positioning the footers at the bottom of the page. */
+/* You can remove this. */
+
+
+html{
+	height: 100% !important;
+}
+
+body{
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    height: 100%;
+}
+
+.content{
+	flex: 1 0 auto;
+	-webkit-flex: 1 0 auto;
+	min-height: 200px;
+}
+
+#myFooter{
+	flex: 0 0 auto;
+    -webkit-flex: 0 0 auto;
 }

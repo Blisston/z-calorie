@@ -28,9 +28,10 @@
             ],
             "styles": [
               "src/styles.scss",
+			  "src/theme.scss",
               "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
-            "scripts": []
+            "scripts": ["node_modules/relax-js/relax.js"]
           },
           "configurations": {
             "production": {
