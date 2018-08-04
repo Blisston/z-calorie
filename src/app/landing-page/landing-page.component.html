@@ -7,7 +7,7 @@
     <a>EXERCISE</a>
     <a>TRY</a>
     <a>CONTACT</a>
-    <a>LOGIN</a>
+    <a (click)="login()">LOGIN</a>
   </div>
   <div class="headBack">
     <h1>EAT<br><span class="changetext"> HEALTHY</span><span class="changetext"> Food</span></h1>
@@ -20,18 +20,18 @@
   <div class="formsty">
     <div class="row">
       <div class="col">
-          <form >
+          <form>
               <mat-form-field >
                 <mat-label>Age</mat-label>
-                  <input type="number"  matInput placeholder="Enter Age">
+                  <input type="number" [(ngModel)]="age" name="age"  matInput placeholder="Enter Age">
                 </mat-form-field><br>
-                <mat-radio-group>
+                <mat-radio-group [(ngModel)]="gender" name="gender">
                     <mat-radio-button class="mr-4 mb-2" value="1">Male</mat-radio-button>
                     <mat-radio-button value="2">Female</mat-radio-button>
                   </mat-radio-group><br>
                 <mat-form-field >
                     <mat-label>Current wieght</mat-label>
-                      <input type="number" max="3" matInput placeholder="Weight in kilos">
+                      <input type="number" max="3" [(ngModel)]="weight" name="weight"  matInput placeholder="Weight in kilos">
                     </mat-form-field><br>
                     <mat-form-field >
                         <mat-label>Current height</mat-label>
@@ -39,7 +39,7 @@
                         </mat-form-field>
                         <br>
                         <mat-form-field>
-                            <mat-select placeholder="Level of Exercise">
+                            <mat-select [(ngModel)]="work" name="work" placeholder="Level of Exercise">
                               <mat-option value="1">Little/No Exercise</mat-option>
                               <mat-option value="2">Moderate Exercise</mat-option>
                               <mat-option value="3">Intense Exercise</mat-option>
@@ -48,8 +48,8 @@
                           </mat-form-field>
               </form>
       </div>
-      <div class="col">
-        <a class="caloriebtn">Calculate</a>
+      <div class="col calculate">
+        <a class="caloriebtn" (click)="calculate()">Calculate</a>
       </div>
     </div>
 
@@ -149,3 +149,10 @@
 <div>
 
 </div>
+<ul *ngFor="let post of posts | async">
+  <li>
+
+    <br>
+    {{post.id}}
+  </li>
+</ul>
