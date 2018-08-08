@@ -1,0 +1,70 @@
+<div class="wrapper">
+  <div class="container">
+    <div *ngIf="register">
+      <h1 *ngIf="olduser">Welcome</h1>
+      <h1 *ngIf="!olduser">Create your account</h1>
+
+      <form *ngIf="olduser" class="form">
+        <input type="text" placeholder="Username">
+        <input type="password" placeholder="Password">
+        <button type="submit" id="login-button">Login</button>
+        <br>
+        <a (click)="login()" class="social-button" id="google-connect">
+          <span>Google</span>
+        </a>
+        <br>
+        <a style="cursor: pointer" (click)="toggle()" class="register">Register here</a>
+      </form>
+      <form *ngIf="!olduser" class="form">
+        <input type="text" [(ngModel)]="userdetails.name" name="username" placeholder="Username">
+        <input type="email" [(ngModel)]="userdetails.email" name="email" placeholder="Email">
+        <input type="password" placeholder="Password">
+        <button type="submit" (click)="user()" id="login-button">Create Account</button>
+        <br>
+        <a style="cursor: pointer" (click)="toggle()" class="register">Already a member ? Sign in</a>
+      </form>
+    </div>
+    <div *ngIf="!register">
+      <div *ngIf="physical">
+      <form class="form">
+        <input type="number" [(ngModel)]="userdetails.height" name="height" placeholder="Height">
+        <input type="number" [(ngModel)]="userdetails.weight" name="weight" placeholder="Weight">
+       <mat-radio-group class="ra" [(ngModel)]="userdetails.gender" name="gender">
+            <mat-radio-button class="mr-4 " value="male">Male</mat-radio-button>
+            <mat-radio-button value="female">Female</mat-radio-button>
+          </mat-radio-group><br>
+        <button type="submit" id="login-button">Next</button>
+        <br>
+      </form>
+    </div>
+    <div *ngIf="!physical">
+        <form class="form">
+
+         <mat-radio-group class="ra" [(ngModel)]="userdetails.weightgoal" name="goal">
+           <mat-label style="margin-right: 90px">I want to:</mat-label><br>
+              <mat-radio-button  value="lose">Lose Weight</mat-radio-button><br>
+              <mat-radio-button style="margin-right: 28px" value="maintain">Maintain</mat-radio-button><br>
+              <mat-radio-button value="gain">Buid Muscle</mat-radio-button>
+            </mat-radio-group>
+            <p>Your Target&nbsp;:2400 <br><span class="edit">Edit target</span></p>
+          <button type="submit" id="login-button">Next</button>
+          <br>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <ul class="bg-bubbles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NgModule, Component } from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {RouterModule , Routes} from '@angular/router';
 
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -17,7 +18,16 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { MainComponent } from './main/main.component';
+const routes: Routes = [
+{path: '', component: LandingPageComponent},
+{path: 'login', component: LoginComponent},
+{path: 'register', component: RegisterComponent},
+{path: 'main', component: MainComponent},
 
+]
 const config = {
   apiKey: 'AIzaSyBI4Xq9-lcks-X7zXJZo-T2sj2mOaBDrQw',
   authDomain: 'login-1526286516019.firebaseapp.com',
@@ -30,10 +40,14 @@ const config = {
 @NgModule({
   declarations: [
     AppComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    LoginComponent,
+    RegisterComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
+    RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     FormsModule,
     MatFormFieldModule,
