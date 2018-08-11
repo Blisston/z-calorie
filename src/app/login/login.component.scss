@@ -68,7 +68,7 @@ form {
   position: relative;
   z-index: 2;
 }
-form input ,.ra ,p{
+form input ,.ra ,p, .drop{
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -85,6 +85,10 @@ form input ,.ra ,p{
   color: white;
   transition-duration: 0.25s;
   font-weight: 300;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #777;
+  opacity: 1; /* Firefox */
 }
 form input:hover,.ra:hover {
   background-color: rgba(255, 255, 255, 0.4);

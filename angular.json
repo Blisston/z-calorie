@@ -28,10 +28,9 @@
             ],
             "styles": [
               "src/styles.scss",
-			  "src/theme.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.css"
+			  "src/theme.scss"
             ],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.js"]
+            "scripts": []
           },
           "configurations": {
             "production": {

@@ -12,6 +12,7 @@
   padding-top: 10px;
   text-align: center;
 }
+
 .navbar1 a {
   color: #fff;
   text-decoration: none;
@@ -59,7 +60,21 @@ div.bordera a:hover:after {
   height: 40%;
   width: 35%;
 }
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  -webkit-text-fill-color: #777 !important;
+}
 
+input:-webkit-autofill:hover, input:-webkit-autofill:focus {
+
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 600s ease-in-out 0s;
+}
 .headBack h1 {
   padding-top: 10%;
   font-size: 360%;
@@ -178,7 +193,7 @@ input[type="number"] {
   outline-offset: 20px;
   outline: 15px solid #f1c40f;
   width: 50%;
-  .calculate{
+  .calculate {
     text-align: center;
     margin-top: 20%;
   }
@@ -193,6 +208,7 @@ input[type="number"] {
   word-spacing: 3px;
   font-size: 20px;
   transition: .3s;
+  margin-left: 30%;
   cursor: pointer;
 }
 
@@ -200,11 +216,6 @@ input[type="number"] {
   color: white !important;
   background-color: #f1c40f !important;
   border: 2px solid #f1c40f;
-}
-
-#myFooter {
-  background-color: #373a48;
-  color: white;
 }
 
 .featuresmain {
@@ -219,10 +230,34 @@ input[type="number"] {
   padding-top: 10%;
 }
 
+input {
+  width: 180px !important;
+}
+
 .row {
   margin-left: auto;
   height: auto;
   margin-top: 20px;
+}
+
+.input-field input:focus+label {
+  color: #FFBF00 !important;
+}
+
+.row .input-field input:focus {
+  border-bottom: 1px solid #FFBF00 !important;
+  box-shadow: 0 1px 0 0 #FFBF00 !important
+}
+
+[type="radio"]:checked+span:after,
+[type="radio"].with-gap:checked+span:before,
+[type="radio"].with-gap:checked+span:after {
+  border: 2px solid #FFBF00 !important;
+}
+
+[type="radio"]:checked+span:after,
+[type="radio"].with-gap:checked+span:after {
+  background-color: #FFBF00 !important;
 }
 
 .features {
@@ -232,7 +267,7 @@ input[type="number"] {
   height: auto;
   font-size: 13px;
   color: #777;
-  width: 20%;
+  width: 18% !important;
   padding: 15px;
   text-align: center;
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
@@ -256,108 +291,4 @@ input[type="number"] {
 
 .features:hover {
   transform: translateY(-15px) scale(1.03);
-}
-
-#myFooter .footer-copyright {
-  background-color: #383737;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  text-align: center;
-}
-
-#myFooter .footer-copyright p {
-  margin: 10px;
-  color: #ccc;
-}
-
-#myFooter ul {
-  list-style-type: none;
-  padding-left: 0;
-  line-height: 1.7;
-}
-
-#myFooter h5 {
-  font-size: 18px;
-  color: white;
-  font-weight: bold;
-  margin-top: 30px;
-}
-
-#myFooter a {
-  color: #d2d1d1;
-  text-decoration: none;
-}
-
-#myFooter a:hover,
-#myFooter a:focus {
-  text-decoration: none;
-  color: white;
-}
-
-#myFooter .myCols {
-  text-align: center;
-}
-
-#myFooter .social-networks {
-  text-align: center;
-  padding-top: 30px;
-  padding-bottom: 38px;
-}
-
-#myFooter .social-networks a {
-  font-size: 32px;
-  margin-right: 5px;
-  margin-left: 5px;
-  color: #f9f9f9;
-  padding: 10px;
-  transition: 0.2s;
-}
-
-#myFooter .social-networks a:hover {
-  text-decoration: none;
-}
-
-#myFooter .facebook:hover {
-  color: #0077e2;
-}
-
-#myFooter .google:hover {
-  color: #ef1a1a;
-}
-
-#myFooter .twitter:hover {
-  color: #00aced;
-}
-
-@media screen and (max-width: 767px) {
-  #myFooter {
-    text-align: center;
-  }
-}
-
-/* CSS used for positioning the footers at the bottom of the page. */
-
-/* You can remove this. */
-
-html {
-  height: 100% !important;
-}
-
-body {
-  display: flex;
-  display: -webkit-flex;
-  flex-direction: column;
-  -webkit-flex-direction: column;
-  height: 100%;
-}
-
-.content {
-  flex: 1 0 auto;
-  -webkit-flex: 1 0 auto;
-  min-height: 200px;
-}
-
-#myFooter {
-  flex: 0 0 auto;
-  -webkit-flex: 0 0 auto;
 }
