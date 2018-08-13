@@ -7,6 +7,7 @@ interface Users {
   username;
   email;
   id?;
+  photourl;
 
 }
 @Injectable({
@@ -17,6 +18,7 @@ export class AuthService {
     userdetails: Users = {
     username: '',
     email: '',
+    photourl: '',
     id: ''
   };
   constructor(public fauth: AngularFireAuth, private router: Router) { }
@@ -31,6 +33,7 @@ export class AuthService {
       .then(res => {
        this.userdetails.email =  res.user.email;
        this.userdetails.username = res.user.displayName;
+       this.userdetails.photourl = res.user.photoURL;
        if (res.additionalUserInfo.isNewUser) {
          this.newUser.emit(true);
          console.log('new user');

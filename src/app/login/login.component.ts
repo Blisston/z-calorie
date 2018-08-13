@@ -12,6 +12,7 @@ interface UserDetails {
   gender: String;
   weightgoal?: String;
   id?: String;
+  photourl: String;
 }
 @Component({
   selector: 'app-login',
@@ -28,7 +29,8 @@ export class LoginComponent implements OnInit {
     activity: '',
     gender: '',
     weightgoal: '',
-    id: ''
+    id: '',
+    photourl : '',
 
   };
   register = true;
@@ -58,6 +60,7 @@ export class LoginComponent implements OnInit {
       const data = this.auth.getUserDEtails();
       this.userdetails.name = data.username;
       this.userdetails.email = data.email;
+      this.userdetails.photourl = data.photourl;
       self.register = !this.register;
       self.ref.detectChanges();
      } else {
@@ -79,6 +82,7 @@ back() {
 submit1() {
   console.log(this.userdetails);
   this.data.User(this.userdetails);
+  this.router.navigate(['main']);
 }
   // goal = '3600';
   // now  = '2400';

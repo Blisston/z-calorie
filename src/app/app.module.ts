@@ -9,8 +9,12 @@ import {MatFormFieldModule} from '@angular/material';
 import {MatInputModule,
         MatRadioModule,
         MatSelectModule,
-        MatOptionModule
+        MatOptionModule,
+        MatDividerModule,
+        MatListModule,
+
                       } from '@angular/material';
+ import {MatIconModule} from '@angular/material/icon';
 
 
 import { AppComponent } from './app.component';
@@ -21,6 +25,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { MainComponent } from './main/main.component';
+import { ProfileComponent } from './main/profile/profile.component';
 const routes: Routes = [
 {path: '', component: LandingPageComponent},
 {path: 'login', component: LoginComponent},
@@ -43,7 +48,8 @@ const config = {
     LandingPageComponent,
     LoginComponent,
     RegisterComponent,
-    MainComponent
+    MainComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +61,9 @@ const config = {
     MatRadioModule,
     MatSelectModule,
      MatOptionModule,
+     MatDividerModule,
+     MatListModule,
+     MatIconModule,
      AngularFireModule.initializeApp(config),
      AngularFirestoreModule,
      AngularFireAuthModule

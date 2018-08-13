@@ -1,52 +1,29 @@
 <div class="wrapper">
-  <nav id="sidebar" [ngClass]="active ? 'active' : 'false'">
-      <div class="sidebar-header">
-          <h3>Bootstrap Sidebar</h3>
+  <div style="line-height: 20px;"  id="sidebar" [ngClass]="active ? 'active' : 'false'">
+<img  Style="margin-top:30px;" src="assets/Images/apple.png" height="70px" class="circle" width="70px">
+      <div Style="margin-top:50px;height:100px">
+
+       <a style="margin-left: 15px;" href="#"> <img height="40px" class="circle" width="40px" src={{photo}}>
+<br>
+      <span style="margin-left: 20px;">{{name}}</span></a>
+
       </div>
+      <mat-divider ></mat-divider>
+      <mat-list >
+          <mat-list-item><i class="fa fa-home"></i>Home</mat-list-item>
+        <mat-list-item  ><i class="fa fa-bookmark"></i>Saved Foods</mat-list-item>
+        <mat-list-item ><i class="fa fa-search"></i>Browse Foods</mat-list-item>
+        <mat-list-item ><i class="fas fa-chart-line" ></i>Track Weight</mat-list-item>
+        <br>
+        <mat-divider ></mat-divider>
 
-      <ul class="list-unstyled components">
-          <p>Dummy Heading</p>
-          <li class="active">
-              <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-              <ul class="collapse list-unstyled" id="homeSubmenu">
-                  <li>
-                      <a href="#">Home 1</a>
-                  </li>
-                  <li>
-                      <a href="#">Home 2</a>
-                  </li>
-                  <li>
-                      <a href="#">Home 3</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-              <a href="#">About</a>
-              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-              <ul class="collapse list-unstyled" id="pageSubmenu">
-                  <li>
-                      <a href="#">Page 1</a>
-                  </li>
-                  <li>
-                      <a href="#">Page 2</a>
-                  </li>
-                  <li>
-                      <a href="#">Page 3</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-              <a href="#">Portfolio</a>
-          </li>
-          <li>
-              <a href="#">Contact</a>
-          </li>
-      </ul>
+        <mat-list-item ><i class="fa fa-share"></i>Share</mat-list-item>
+      </mat-list>
 
 
-  </nav>
 
-  <!-- Page Content Holder -->
+
+    </div>
   <div id="content">
       <button type="button" id="sidebarCollapse"  (click)="toggle()"
       [ngClass]="active ? 'active' : 'false'"  class="navbar-btn">
@@ -54,6 +31,6 @@
           <span></span>
           <span></span>
       </button>
-
+<app-profile></app-profile>
 </div>
 </div>
