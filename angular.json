@@ -28,9 +28,12 @@
             ],
             "styles": [
               "src/styles.scss",
-			  "src/theme.scss"
+        "src/theme.scss",
+        "node_modules/primeng/resources/themes/nova-light/theme.css",
+        "node_modules/primeng/resources/primeng.min.css"
+
             ],
-            "scripts": []
+            "scripts": ["./node_modules/chart.js/dist/Chart.js"]
           },
           "configurations": {
             "production": {

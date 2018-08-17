@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import {AngularFireAuth} from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 import {Router} from '@angular/router';
 
 interface Users {
@@ -17,7 +17,7 @@ export class AuthService {
   newUser = new EventEmitter;
     userdetails: Users = {
     username: '',
-    email: '',
+    email: 'blisstonkirubha@gmail.com',
     photourl: '',
     id: ''
   };

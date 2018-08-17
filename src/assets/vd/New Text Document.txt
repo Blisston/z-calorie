@@ -1,1 +1,2 @@
 https://api.edamam.com/search?q=chicken%20briyani&app_id=fc3a6891&app_key=ffea9d169adfe36c0c805090ad5d80ef
+https://api.edamam.com/api/food-database/parser?ingr=milk&app_id=5d3f56de&app_key=e5b01b5a1563ebbdbc5804f8f5

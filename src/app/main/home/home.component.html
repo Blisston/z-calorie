@@ -1,0 +1,81 @@
+<div class="row" >
+  <div class="col s6">
+    <p-chart type="pie" [data]="data" [options]="options"></p-chart>
+  <div class="row">
+    <div class="col s6">
+      <h6 class="center-align">Current totals</h6>
+      <div class="col s6 ">
+        <p class=" purple-text center-align">Calories
+        </p>
+        <br>
+        <p class=" purple-text center-align">Calories
+        </p>
+        <p class=" purple-text center-align">Calories
+        </p>
+        <p class=" purple-text center-align">Calories
+        </p>
+        <br>
+        <p class=" purple-text center-align">Calories
+        </p>
+        <p class=" purple-text center-align">Calories
+        </p>
+        <p class=" purple-text center-align">Calories
+        </p>
+        <p class=" purple-text center-align">Calories
+        </p>
+      </div>
+      <div class="col s6">
+        <p class=" purple-text center-align">2100
+        </p>
+        <br>
+        <p class=" purple-text center-align">2100
+        </p>
+        <p class=" purple-text center-align">2100
+        </p>
+        <p class=" purple-text center-align">2100
+        </p><br>
+        <p class=" purple-text center-align">2100
+        </p>
+        <p class=" purple-text center-align">2100
+        </p>
+        <p class=" purple-text center-align">2100
+        </p>
+        <p class=" purple-text center-align">2100
+        </p>
+      </div>
+    </div>
+    <div class="col s6">
+      <h6 class="center-align">Target values</h6>
+      <p class=" purple-text center-align">2100
+      </p><br>
+      <p class=" purple-text center-align">2100
+      </p>
+      <p class=" purple-text center-align">2100
+      </p>
+      <p class=" purple-text center-align">2100
+      </p><br>
+      <p class=" purple-text center-align">2100
+      </p>
+      <p class=" purple-text center-align">2100
+      </p>
+    </div>
+  </div>
+  </div>
+<div class="col s6">
+      <div class="card horizontal" *ngFor="let food of FoodList">
+        <div class="card-image">
+          <img style="width: 120px;" src={{food.recipe.image}}>
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <h6>{{food.recipe.label}}</h6>
+            <p>{{food.recipe.calories}}Calories</p>
+            <p>1 Servings</p>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+

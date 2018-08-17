@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule , Routes} from '@angular/router';
+import {HttpModule} from '@angular/http';
+
 
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -12,6 +14,7 @@ import {MatInputModule,
         MatOptionModule,
         MatDividerModule,
         MatListModule,
+        MatCardModule
 
                       } from '@angular/material';
  import {MatIconModule} from '@angular/material/icon';
@@ -26,6 +29,12 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { MainComponent } from './main/main.component';
 import { ProfileComponent } from './main/profile/profile.component';
+import { HomeComponent } from './main/home/home.component';
+import {FooddataService } from './Services/fooddata.service';
+import {ChartModule} from 'primeng/chart';
+import {ButtonModule} from 'primeng/button';
+
+
 const routes: Routes = [
 {path: '', component: LandingPageComponent},
 {path: 'login', component: LoginComponent},
@@ -49,13 +58,15 @@ const config = {
     LoginComponent,
     RegisterComponent,
     MainComponent,
-    ProfileComponent
+    ProfileComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     FormsModule,
+    HttpModule,
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,
@@ -64,11 +75,14 @@ const config = {
      MatDividerModule,
      MatListModule,
      MatIconModule,
+     MatCardModule,
      AngularFireModule.initializeApp(config),
      AngularFirestoreModule,
-     AngularFireAuthModule
+     AngularFireAuthModule,
+     ChartModule,
+     ButtonModule
   ],
-  providers: [],
+  providers: [FooddataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
