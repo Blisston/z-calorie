@@ -63,7 +63,7 @@ export class DataService {
     this.postsCol = this.afs.collection(email);
     const data = this.postsCol.valueChanges();
     data.subscribe(a => {
-      this.userdetails.emit(a[1]);
+      this.userdetails.emit(a[0]);
     });
   }
 FoodFire(f) {
@@ -81,7 +81,10 @@ FoodFire(f) {
       })
     );
     console.log(f);
-    this.Foods.add(f);
+    this.addFoodData(f);
+}
+addFoodData(f) {
+  this.Foods.add(f);
 }
 getFoodData(email) {
   this.Foods = this.afs.collection(this.auth.userdetails.email);
@@ -108,7 +111,6 @@ getFoodData(email) {
       console.log(this.id);
       this.Fooddoc = this.afs.doc(`blisstonkirubha@gmail.com/${this.id}`);
       this.Fooddoc.delete();
-      this.fooddata.emit(item);
     });
     }
 }

@@ -12,3 +12,30 @@
  padding: 5px;
  position: relative;
 }
+.topnav{
+  height: 120px;
+  border-bottom: 2px solid (rgb(241, 196, 15));
+}
+.bold {
+  font-weight: 700;
+}
+.inline {
+  display:inline;
+}
+.button {
+  color: (rgb(241, 196, 15)) !important;
+  border: 1px solid white !important;
+  background-color: white;
+  border-radius: 5%;
+  padding: 8px 20px;
+  word-spacing: 3px;
+  font-size: 20px;
+  transition: .3s;
+}
+.block{
+  padding: 4px 10px;
+}
+.button:hover {
+  color:white !important;
+  background-color: (rgb(241, 196, 15)) !important;
+}

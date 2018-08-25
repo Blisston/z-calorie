@@ -14,10 +14,12 @@ import {MatInputModule,
         MatOptionModule,
         MatDividerModule,
         MatListModule,
-        MatCardModule
+        MatCardModule,
+        MatNativeDateModule
 
                       } from '@angular/material';
  import {MatIconModule} from '@angular/material/icon';
+ import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 import { AppComponent } from './app.component';
@@ -76,6 +78,8 @@ const config = {
      MatListModule,
      MatIconModule,
      MatCardModule,
+     MatNativeDateModule,
+     MatDatepickerModule,
      AngularFireModule.initializeApp(config),
      AngularFirestoreModule,
      AngularFireAuthModule,
