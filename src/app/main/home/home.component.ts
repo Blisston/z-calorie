@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
+
 import {FooddataService } from '../../Services/fooddata.service';
 import {DataService} from '../../Services/data-service.service';
 import {SharedService} from '../shared.service';
@@ -7,11 +9,35 @@ interface Food {
   date: String;
   servingtime: String;
   fav: Boolean;
+
 }
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  animations: [
+
+    trigger('listAnimation', [
+      transition('* => *', [
+
+        query(':enter', style({ opacity: 0 }), {optional: true}),
+
+        query(':enter', stagger('300ms', [
+          animate('1s ease-in', keyframes([
+            style({opacity: 0, transform: 'translateY(-75%)', offset: 0}),
+            style({opacity: .5, transform: 'translateY(35px)',  offset: 0.3}),
+            style({opacity: 1, transform: 'translateY(0)',     offset: 1.0}),
+          ]))]), {optional: true}),
+        query(':leave', stagger('300ms', [
+          animate('1s ease-in', keyframes([
+            style({opacity: 1, transform: 'translateY(0)', offset: 0}),
+            style({opacity: .5, transform: 'translateY(35px)',  offset: 0.3}),
+            style({opacity: 0, transform: 'translateY(-75%)',     offset: 1.0}),
+          ]))]), {optional: true})
+      ])
+    ])
+
+  ]
 })
 export class HomeComponent implements OnInit {
 img ;
@@ -22,8 +48,17 @@ search;
 searchList = [];
 searchFoodList ;
 searchFoodListimg ;
-date = '';
-zz;
+editcalorie = 2100;
+editcarbmin;
+editcarbmax ;
+editpromax ;
+editpromin;
+editfatmin;
+editfatmax ;
+rangeValues: number[] = [0,  100];
+date;
+zz = new Date();
+xx = new Date();
 servingtime = '';
 abc: Food = {
   food : '',
@@ -34,9 +69,18 @@ abc: Food = {
 a = 0 ;
 b = 0;
 c = 0;
+d = 0;
 data: any;
 options;
+tarcalorie;
+tarpromin;
+tarpromax;
+tarfatmin;
+tarfatmax;
+tarcarbmin;
+tarcarbmax;
 constructor(private foodservice: FooddataService, private data1: DataService, private shared: SharedService) {
+  this.shared.date = this.zz;
 }
   ngOnInit() {
     this.FoodList = this.shared.getFood();
@@ -47,19 +91,24 @@ constructor(private foodservice: FooddataService, private data1: DataService, pr
 
   }
   onChange(newValue) {
+    this.a = this.b = this.c = this.d = 0;
     console.log(newValue);
     this.zz = newValue;  // don't forget to update the model here
     // ... do other stuff here ...
-    const d = new Date(newValue);
-this.zz = d.getDate();
-    console.log(this.zz);
+    this.shared.date = this.zz;
+    this.xx = new Date(newValue);
+const x = this.xx.getDate();
+    console.log(x);
     this.FoodList = [];
     this.shared.Food = [];
-    this.shared.foodData(this.zz);
+    this.shared.foodData(x);
 }
   ate(x) {
+    this.a = this.b = this.c = this.d = 0;
+    this.shared.date = this.zz;
     this.abc.food = x;
-    this.abc.date = '13';
+    this.date = new Date(this.xx);
+    this.abc.date = this.date.getDate();
     this.abc.servingtime = this.servingtime;
     console.log(this.food);
  this.data1.addFoodData(this.abc);
@@ -72,21 +121,35 @@ del() {
 
   this.data.deleteFood(3);
 }
+save() {
+  this.tarcalorie = this.editcalorie;
+  this.tarcarbmin = this.editcarbmin;
+  this.tarcarbmax = this.editcarbmax;
+  this.tarfatmin = this.editfatmin;
+  this.tarfatmax = this.editfatmax;
+  this.tarpromin = this.editpromin;
+  this.tarpromax = this.editpromax;
+
+}
 delete(x, i) {
   console.log(x);
   this.FoodList.splice(i, 1);
   this.shared.Food = [];
 this.shared.delete(x);
 
-
-
-
+}
+handleChange(e) {
+  console.log(e.values);
+  // this.editcarbmin = e.values[0];
+  // this.editcarbmax = e.values[1];
 }
 sum() {
+  this.a = this.b = this.c = this.d = 0;
   this.FoodList.forEach(a => {
-   this.a = this.a + a.recipe.totalNutrients.FAT.quantity;
-   this.b = this.b + a.recipe.totalNutrients.CHOCDF.quantity;
-   this.c = this.c + a.recipe.totalNutrients.PROCNT.quantity;
+   this.a = Math.floor(this.a + a.recipe.totalNutrients.FAT.quantity);
+   this.b = Math.floor(this.b + a.recipe.totalNutrients.CHOCDF.quantity);
+   this.c = Math.floor(this.c + a.recipe.totalNutrients.PROCNT.quantity);
+   this.d = Math.floor(this.d + a.recipe.calories);
   });
   this.data = {
     labels: ['FAT', 'Carbs', 'Protein'],

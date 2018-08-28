@@ -111,6 +111,7 @@ getFoodData(email) {
       console.log(this.id);
       this.Fooddoc = this.afs.doc(`blisstonkirubha@gmail.com/${this.id}`);
       this.Fooddoc.delete();
+      i = 1000;
     });
     }
 }

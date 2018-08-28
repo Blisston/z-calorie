@@ -1,41 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-weight: 300;
-}
-body {
-  font-family: "Source Sans Pro", sans-serif;
-  color: white;
-  font-weight: 300;
-}
-body ::-webkit-input-placeholder {
-  /* WebKit browsers */
-  font-family: "Source Sans Pro", sans-serif;
-  color: white;
-  font-weight: 300;
-}
-body :-moz-placeholder {
-  /* Mozilla Firefox 4 to 18 */
-  font-family: "Source Sans Pro", sans-serif;
-  color: white;
-  opacity: 1;
-  font-weight: 300;
-}
-body ::-moz-placeholder {
-  /* Mozilla Firefox 19+ */
-  font-family: "Source Sans Pro", sans-serif;
-  color: white;
-  opacity: 1;
-  font-weight: 300;
-}
-body :-ms-input-placeholder {
-  /* Internet Explorer 10+ */
-  font-family: "Source Sans Pro", sans-serif;
-  color: white;
-  font-weight: 300;
-}
+
 .wrapper {
   background: (rgb(241, 196, 15));
   background: linear-gradient(to bottom right, (rgb(241, 196, 15))0%, (rgb(241, 196, 15) 100%));

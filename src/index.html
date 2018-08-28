@@ -28,6 +28,11 @@
       // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
       $(".modal-trigger").leanModal();
     });
+	  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    var instances = M.Dropdown.init(elems, options);
+  });
+  $('.dropdown-trigger').dropdown();
 </script>
 
 </body>

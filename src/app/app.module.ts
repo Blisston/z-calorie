@@ -3,10 +3,9 @@ import { NgModule, Component } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule , Routes} from '@angular/router';
 import {HttpModule} from '@angular/http';
+import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material';
 import {MatInputModule,
         MatRadioModule,
@@ -19,8 +18,11 @@ import {MatInputModule,
 
                       } from '@angular/material';
  import {MatIconModule} from '@angular/material/icon';
- import {MatDatepickerModule} from '@angular/material/datepicker';
+ import {MatMenuModule} from '@angular/material/menu';
 
+ import {MatDatepickerModule} from '@angular/material/datepicker';
+ import {TooltipModule} from 'primeng/tooltip';
+ import {SliderModule} from 'primeng/slider';
 
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -35,7 +37,7 @@ import { HomeComponent } from './main/home/home.component';
 import {FooddataService } from './Services/fooddata.service';
 import {ChartModule} from 'primeng/chart';
 import {ButtonModule} from 'primeng/button';
-
+import {InputTextModule} from 'primeng/inputtext';
 
 const routes: Routes = [
 {path: '', component: LandingPageComponent},
@@ -68,6 +70,7 @@ const config = {
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     FormsModule,
+    BrowserAnimationsModule,
     HttpModule,
     MatFormFieldModule,
     MatInputModule,
@@ -84,8 +87,10 @@ const config = {
      AngularFirestoreModule,
      AngularFireAuthModule,
      ChartModule,
-     ButtonModule
-  ],
+     MatMenuModule,
+     ButtonModule,
+     SliderModule,
+    InputTextModule  ],
   providers: [FooddataService],
   bootstrap: [AppComponent]
 })
