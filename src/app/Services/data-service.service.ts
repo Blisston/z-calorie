@@ -84,6 +84,7 @@ FoodFire(f) {
     this.addFoodData(f);
 }
 addFoodData(f) {
+  console.log(f);
   this.Foods.add(f);
 }
 getFoodData(email) {
@@ -108,7 +109,7 @@ getFoodData(email) {
     );
     this.data.subscribe(item => {
       this.id = item[i].id;
-      console.log(this.id);
+      console.log(this.id +' ' + item[i]);
       this.Fooddoc = this.afs.doc(`blisstonkirubha@gmail.com/${this.id}`);
       this.Fooddoc.delete();
       i = 1000;

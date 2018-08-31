@@ -79,6 +79,7 @@ tarfatmin;
 tarfatmax;
 tarcarbmin;
 tarcarbmax;
+loader = true;
 constructor(private foodservice: FooddataService, private data1: DataService, private shared: SharedService) {
   this.shared.date = this.zz;
 }
@@ -86,11 +87,17 @@ constructor(private foodservice: FooddataService, private data1: DataService, pr
     this.FoodList = this.shared.getFood();
     this.shared.changed.subscribe(x => {
       this.FoodList = x;
+      const actual = this.shared.getsize();
+      if (actual == this.FoodList.length) {
+        this.loader = false;
+      }
+
       this.sum();
     });
 
   }
   onChange(newValue) {
+    this.shared.del = 0;
     this.a = this.b = this.c = this.d = 0;
     console.log(newValue);
     this.zz = newValue;  // don't forget to update the model here
@@ -103,18 +110,19 @@ const x = this.xx.getDate();
     this.shared.Food = [];
     this.shared.foodData(x);
 }
-  ate(x) {
+  ate(x,y) {
     this.a = this.b = this.c = this.d = 0;
     this.shared.date = this.zz;
     this.abc.food = x;
     this.date = new Date(this.xx);
     this.abc.date = this.date.getDate();
     this.abc.servingtime = this.servingtime;
-    console.log(this.food);
+    console.log(x);
  this.data1.addFoodData(this.abc);
- this.shared.Food = [];
- this.shared.start();
- this.shared.foodData(this.zz);
+ //this.shared.Food = [];
+ //this.shared.foodData(this.zz);
+ this.FoodList.push(y);
+ console.log(y);
 }
 del() {
   console.log('fes');

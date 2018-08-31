@@ -11,7 +11,7 @@
           </mat-form-field>
 
 
-          <button class="calender btn" (click)="picker.open()">
+          <button class="calender" (click)="picker.open()">
             <i class="fa fa-calendar right"></i>Go to
           </button>
     <p-chart type="pie" [data]="data" [options]="options"></p-chart>
@@ -80,25 +80,26 @@
   </div>
   <div class="col s6 rightside" [@listAnimation]="FoodList.length">
       <button class="button modal-trigger" data-target="modal1">Add Food</button>
-   <div id="list" class="card horizontal foodlist" *ngFor="let food of FoodList; let i = index" tooltipPosition="top" pTooltip="Enter your username">
+   <div id="list" class="card horizontal foodlist"  *ngFor="let food of FoodList; let i = index" tooltipPosition="top" pTooltip="Enter your username">
       <div class="card-image">
         <img style="width: 90px;"  src={{food.recipe.image}}>
       </div>
       <div class="card-stacked">
         <div class="card-content">
            <i class="fa fa-ellipsis-v" mat-button [matMenuTriggerFor]="menu" aria-hidden="true"><a > </a></i>
-          <mat-menu #menu="matMenu">
-              <button mat-menu-item>Item 1</button>
-              <button mat-menu-item>Item 2</button>
+          <mat-menu #menu="matMenu" class="selectoptions">
+              <a mat-menu-item>Save Recipe</a>
+              <a (click)="delete(food.recipe.label,i)" mat-menu-item>Delete Recipe</a>
             </mat-menu>
-          <h6>{{food.recipe.label}}</h6>
+          <h6 >{{food.recipe.label}}</h6>
           <p>{{food.recipe.calories   |number: '1.0-0'}} Calories</p>
           <p>1 Servings</p>
-          <button (click)="delete(food.recipe.label,i)" >Clear this food</button>
         </div>
 
       </div>
+
     </div>
+    <mat-spinner *ngIf="loader"></mat-spinner>
   </div>
 
 
@@ -157,16 +158,14 @@
         <div class="col s12" [@listAnimation]="searchList.length">
           <div id="list" class="card horizontal foodlist" *ngFor="let food of searchList">
             <div class="card-image">
-              <img style="width: 108px;" src={{food.recipe.image}}>
+              <img style="width: 90px;" src={{food.recipe.image}}>
             </div>
             <div class="card-stacked">
               <div class="card-content">
+                  <i class="fa fa-plus-circle"  (click)="ate(food.recipe.label,food)"></i>
                 <h6>{{food.recipe.label}}</h6>
                 <p>{{food.recipe.calories |number: '1.0-0'}}Calories</p>
                 <p>1 Servings</p>
-
-                <a class="   btn-flat" (click)="fav(food.recipe.label)">Add to fav</a>
-                <a class="   btn-flat" (click)="ate(food.recipe.label)">I ate this</a>
               </div>
             </div>
           </div>

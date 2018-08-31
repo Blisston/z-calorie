@@ -19,6 +19,7 @@ import {MatInputModule,
                       } from '@angular/material';
  import {MatIconModule} from '@angular/material/icon';
  import {MatMenuModule} from '@angular/material/menu';
+ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
  import {MatDatepickerModule} from '@angular/material/datepicker';
  import {TooltipModule} from 'primeng/tooltip';
@@ -82,6 +83,7 @@ const config = {
      MatIconModule,
      MatCardModule,
      MatNativeDateModule,
+     MatProgressSpinnerModule,
      MatDatepickerModule,
      AngularFireModule.initializeApp(config),
      AngularFirestoreModule,
