@@ -2,6 +2,7 @@
 
   <div  class="col s6 leftside">
       <div>
+
           <h5 class=" amber-text " style="margin-top: 20px; margin-bottom: 0px">Augest 2018</h5>
           <h4 class=" amber-text " style="margin: 0">{{zz | date : 'd'}}</h4>
         </div>
@@ -14,6 +15,7 @@
           <button class="calender" (click)="picker.open()">
             <i class="fa fa-calendar right"></i>Go to
           </button>
+
     <p-chart type="pie" [data]="data" [options]="options"></p-chart>
     <div class="row">
       <div class="col s6">
@@ -89,7 +91,7 @@
            <i class="fa fa-ellipsis-v" mat-button [matMenuTriggerFor]="menu" aria-hidden="true"><a > </a></i>
           <mat-menu #menu="matMenu" class="selectoptions">
               <a mat-menu-item>Save Recipe</a>
-              <a (click)="delete(food.recipe.label,i)" mat-menu-item>Delete Recipe</a>
+              <a (click)="delete(food.recipe.label,i,zz)" mat-menu-item>Delete Recipe</a>
             </mat-menu>
           <h6 >{{food.recipe.label}}</h6>
           <p>{{food.recipe.calories   |number: '1.0-0'}} Calories</p>

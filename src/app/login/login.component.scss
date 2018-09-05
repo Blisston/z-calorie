@@ -63,8 +63,8 @@ form input:focus,.ra:focus {
   color:(rgb(241, 196, 15))
 }
 
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
+form input[type="number"]::-webkit-outer-spin-button,
+form input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -79,8 +79,19 @@ input[type="number"]::-webkit-inner-spin-button {
   border-radius: 3px;
   font-size: 15px;
 }
-input[type="number"] {
+form input[type="number"] {
   -moz-appearance: textfield;
+}
+.modalz
+{
+  position: absolute;
+  top: 83px !important;
+  display: block;
+
+}
+.modal
+{
+  z-index: 10 !important;
 }
 form button {
   -webkit-appearance: none;

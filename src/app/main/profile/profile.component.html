@@ -1,22 +1,74 @@
 
-<div class="row">
+<div style="background-color: rgb(236, 235, 235);height: 100%">
+<div class="row" >
+
   <div class="col s6">
     <div class="col s6">
       <h5>My Profile</h5>
       <img class="profile-img" src={{userdetails.photourl}} height="150px;">
     </div>
-    <div class="col s6">
+    <div style="margin-left: -19px;margin-top: 30px" class="col s6">
       <div class="details">
       <p>{{userdetails.name}}</p>
       <p>{{userdetails.email}}</p>
       <p>{{userdetails.gender}}</p>
-      <p>{{userdetails.weight}}</p>
-      <p>{{userdetails.height}}</p>
+      <p>{{weightDisplay}}&nbsp;kg </p>
+      <p>{{userdetails.height}}&nbsp;cm tall</p>
       <p>{{userdetails.activity}}</p>
+      <a class="weightupdate modal-trigger" data-target="modal3"><i class="fa fa-pencil-square"></i>Edit your info</a><br>
+      <a class="weightupdate modal-trigger" data-target="modal4"><i class="fa fa-pencil-square" ></i>Update you weight</a>
+
 
       </div>
     </div>
   </div>
   <div class="col s6"></div>
+
+</div>
+<p-toast ></p-toast>
+
+<p-chart type="line" style="z-index: 1000;"[data]="chartdata" (onDataSelect)="selectData($event)"></p-chart>
+
+
+  <!-- Modal Structure -->
+  <div id="modal3" class="modal">
+    <div class="modal-content">
+      <h6>Update your profile</h6>
+      <label class="lable">Name: &nbsp; &nbsp; &nbsp; &nbsp;</label>
+      <input class="browser-default inp" type="text" [(ngModel)]="userdetails.name" pInputText /><br><br>
+      <label class="lable">Age: &nbsp; &nbsp; &nbsp; &nbsp;</label>
+      <input class="browser-default inp" type="text" [(ngModel)]="userdetails.email" pInputText /><br><br>
+      <label class="lable">Height: &nbsp; &nbsp; &nbsp; &nbsp;</label>
+      <input class="browser-default inp" type="text" [(ngModel)]="userdetails.height" pInputText /><br><br>
+      <label class="lable">Gender: &nbsp; &nbsp; &nbsp; &nbsp;</label>
+      <p-radioButton name="groupname" value="male" label="male" [(ngModel)]="userdetails.gender">male</p-radioButton>&nbsp;
+      <p-radioButton name="groupname" value="female" label="Female" [(ngModel)]="userdetails.gender">Female</p-radioButton>
+<br>
+<br>
+<label class="lable">Activity: &nbsp; &nbsp; &nbsp; &nbsp;</label>
+      <p-radioButton name="groupname1" value="light" label="Male" [(ngModel)]="userdetails.activity">Low</p-radioButton>&nbsp;
+      <p-radioButton name="groupname1" value="medium" label="Female" [(ngModel)]="userdetails.activity">Medium</p-radioButton>&nbsp;
+      <p-radioButton name="groupname1" value="heavy" label="Female" [(ngModel)]="userdetails.activity">High</p-radioButton>&nbsp;
+      <br><br>
+      <label class="lable">I want to: &nbsp; &nbsp; &nbsp; &nbsp;</label>
+      <p-radioButton name="groupname2" value="lose" label="lose" [(ngModel)]="userdetails.activity">Lose weight</p-radioButton>&nbsp;
+      <p-radioButton name="groupname2" value="maintain" label="maintain" [(ngModel)]="userdetails.activity">Maintain</p-radioButton>&nbsp;
+      <p-radioButton name="groupname2" value="gain" label="gain" [(ngModel)]="userdetails.activity">Gain</p-radioButton>&nbsp;
+    </div>
+    <div class="modal-footer">
+      <a  class="modal-close waves-effect  btn-flat" (click)="update()">Save</a>
+    </div>
+  </div>
+  <div id="modal4" class="modal">
+    <div class="modal-content">
+<h5>Update weight</h5>
+{{updateWeight}}
+<label class="lable">New Weight: &nbsp; &nbsp; &nbsp; &nbsp;</label>
+      <input class="browser-default inp" type="text" name="updateWeight" [(ngModel)]="updateWeight" pInputText /><br><br>
+</div>
+<div class="modal-footer">
+  <a  class="modal-close waves-effect  btn-flat" (click)="weightUpdate()" >Save</a>
+</div>
 </div>
 
+</div>

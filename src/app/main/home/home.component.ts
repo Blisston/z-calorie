@@ -11,6 +11,20 @@ interface Food {
   fav: Boolean;
 
 }
+interface Users {
+  name: String;
+  email: String;
+  height: String;
+  weight: String;
+  updatedWeightMonth?: String;
+  activity: String;
+  gender: String;
+  weightgoal?: String;
+  id?: String;
+  calories?: String;
+  caloriedate?: String;
+  photourl: String;
+}
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -74,16 +88,26 @@ data: any;
 options;
 tarcalorie;
 tarpromin;
+userDetails: Users;
 tarpromax;
 tarfatmin;
 tarfatmax;
 tarcarbmin;
 tarcarbmax;
+trackDate = new Date().getDate();
+calorieTrack = [];
+calorieDate = [];
 loader = true;
+addCalor = 0;
 constructor(private foodservice: FooddataService, private data1: DataService, private shared: SharedService) {
   this.shared.date = this.zz;
 }
   ngOnInit() {
+    this.data1.userdetails.subscribe(a => {
+      this.userDetails = a;
+
+      this.addedCalorie();
+    });
     this.FoodList = this.shared.getFood();
     this.shared.changed.subscribe(x => {
       this.FoodList = x;
@@ -96,6 +120,9 @@ constructor(private foodservice: FooddataService, private data1: DataService, pr
     });
 
   }
+  addedCalorie() {
+
+  }
   onChange(newValue) {
     this.shared.del = 0;
     this.a = this.b = this.c = this.d = 0;
@@ -105,10 +132,12 @@ constructor(private foodservice: FooddataService, private data1: DataService, pr
     this.shared.date = this.zz;
     this.xx = new Date(newValue);
 const x = this.xx.getDate();
+this.trackDate = x;
     console.log(x);
     this.FoodList = [];
     this.shared.Food = [];
     this.shared.foodData(x);
+
 }
   ate(x,y) {
     this.a = this.b = this.c = this.d = 0;
@@ -123,6 +152,8 @@ const x = this.xx.getDate();
  //this.shared.foodData(this.zz);
  this.FoodList.push(y);
  console.log(y);
+ this.addedCalorie();
+ this.sum();
 }
 del() {
   console.log('fes');
@@ -139,11 +170,12 @@ save() {
   this.tarpromax = this.editpromax;
 
 }
-delete(x, i) {
-  console.log(x);
+delete(x, i, date) {
+  console.log(this.trackDate);
   this.FoodList.splice(i, 1);
   this.shared.Food = [];
-this.shared.delete(x);
+this.shared.delete(x,this.trackDate);
+this.sum();
 
 }
 handleChange(e) {
@@ -151,6 +183,7 @@ handleChange(e) {
   // this.editcarbmin = e.values[0];
   // this.editcarbmax = e.values[1];
 }
+
 sum() {
   this.a = this.b = this.c = this.d = 0;
   this.FoodList.forEach(a => {
@@ -158,7 +191,31 @@ sum() {
    this.b = Math.floor(this.b + a.recipe.totalNutrients.CHOCDF.quantity);
    this.c = Math.floor(this.c + a.recipe.totalNutrients.PROCNT.quantity);
    this.d = Math.floor(this.d + a.recipe.calories);
+console.log(this.trackDate);
+  this.calorieTrack = this.userDetails.calories.split(',');
+  this.calorieDate = this.userDetails.caloriedate.split(',');
+  const x = this.calorieDate.indexOf(`${this.trackDate}`);
+  console.log(`${this.trackDate}`);
+  if (this.calorieDate.indexOf(`${this.trackDate}`) === -1) {
+    this.userDetails.calories = this.userDetails.calories + `,${this.d}` ;
+    this.userDetails.caloriedate = this.userDetails.caloriedate + `,${this.trackDate}`;
+    console.log(this.userDetails);
+} else {
+this.calorieTrack[x] = this.d;
+this.calorieDate[x] = this.trackDate;
+console.log(this.calorieTrack);
+console.log(this.calorieDate);
+this.userDetails.calories = this.calorieTrack.join();
+  this.userDetails.caloriedate = this.calorieDate.join();
+console.log(this.d);
+}
+//this.data1.updateUserData(this.userDetails.email, this.userDetails);
+console.log(this.userDetails);
+  this.data1.updateUserData(this.userDetails.email, this.userDetails);
   });
+  // this.userDetails.calories = this.calorieTrack.join();
+  // this.userDetails.caloriedate = this.calorieDate.join();
+
   this.data = {
     labels: ['FAT', 'Carbs', 'Protein'],
     datasets: [

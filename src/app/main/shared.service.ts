@@ -33,10 +33,13 @@ changed = new EventEmitter<any[]>();
     this.m++;
     console.log(this.m);
     console.log(res.length);
-    if(this.m == 2) {
+    if (this.m == 2) {
       console.log(this.m);
       this.foodData(this.date.getDate());
       this.m++;
+    }
+    if( this.m > 3) {
+      this.m = 1000;
     }
      });
 
@@ -72,13 +75,17 @@ start() {
    }
   addFood(x) {
     this.del = 1;
+
     this.Food.push(x);
+    const index = this.Food.findIndex(x1 => x.recipe.label === x1.recipe.label );
+
+console.log("ind" + index);
     this.changed.emit(this.Food.slice());
   }
-  delete(x) {
+  delete(x, date) {
     this.del = 1;
     for(let i = 0 ; i < this.index.length; i++) {
-      if(this.index[i].food === x){
+      if(this.index[i].food === x && this.index[i].date === date){
         console.log(this.index[i].food);
                 this.user.deleteFood(i);
 

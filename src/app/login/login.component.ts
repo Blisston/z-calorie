@@ -9,6 +9,7 @@ interface UserDetails {
   height: String;
   weight: String;
   activity: String;
+  age: String;
   gender: String;
   weightgoal?: String;
   id?: String;
@@ -30,12 +31,28 @@ export class LoginComponent implements OnInit {
     gender: '',
     weightgoal: '',
     id: '',
+    age: '',
     photourl : '',
 
   };
-  register = true;
+  register = false;
   olduser = true;
   physical = true;
+  tarcalorie;
+  display = "none";
+tarpromin;
+tarpromax;
+tarfatmin;
+tarfatmax;
+tarcarbmin;
+tarcarbmax;
+editcalorie = 2100;
+editcarbmin;
+editcarbmax ;
+editpromax ;
+editpromin;
+editfatmin;
+editfatmax ;
 
   constructor( private auth: AuthService,
      private data: DataService, private ref: ChangeDetectorRef,
@@ -51,6 +68,14 @@ export class LoginComponent implements OnInit {
     self.physical = !this.physical;
     self.ref.detectChanges();
     console.log(this.physical);
+  }
+  toggleDisplay()
+  {
+    if(this.display === 'block'){
+    this.display = "none";}
+    else{
+      this.display ="block"
+    }
   }
   login() {
     this.auth.login();
@@ -79,10 +104,23 @@ back() {
     self.ref.detectChanges();
     console.log(this.physical);
 }
+print() {
+  console.log('ds');
+}
 submit1() {
   console.log(this.userdetails);
   this.data.User(this.userdetails);
-  this.router.navigate(['main']);
+  this.zone.run(() => this.router.navigate(['main']));
+}
+save() {
+  this.tarcalorie = this.editcalorie;
+  this.tarcarbmin = this.editcarbmin;
+  this.tarcarbmax = this.editcarbmax;
+  this.tarfatmin = this.editfatmin;
+  this.tarfatmax = this.editfatmax;
+  this.tarpromin = this.editpromin;
+  this.tarpromax = this.editpromax;
+
 }
   // goal = '3600';
   // now  = '2400';

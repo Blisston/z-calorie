@@ -1,5 +1,9 @@
 .row
 {
+  background-color: rgb(236, 235, 235);  margin: 0
+}
+.col
+{
   margin-top: 5%;
 }
 .profile-img
@@ -8,4 +12,14 @@
 }
 .details{
   padding-top: 35px !important;
+}
+.weightupdate:hover
+{
+  text-decoration: underline;
+  cursor: pointer;
+
+}
+.btn
+{
+
 }

@@ -20,11 +20,11 @@ import {MatInputModule,
  import {MatIconModule} from '@angular/material/icon';
  import {MatMenuModule} from '@angular/material/menu';
  import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
+ import {RadioButtonModule} from 'primeng/radiobutton';
  import {MatDatepickerModule} from '@angular/material/datepicker';
  import {TooltipModule} from 'primeng/tooltip';
  import {SliderModule} from 'primeng/slider';
-
+ import {ToastModule} from 'primeng/toast';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AngularFireModule } from 'angularfire2';
@@ -39,7 +39,8 @@ import {FooddataService } from './Services/fooddata.service';
 import {ChartModule} from 'primeng/chart';
 import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
-
+import {MessageService} from 'primeng/api';
+import { GraphComponent } from './main/graph/graph.component';
 const routes: Routes = [
 {path: '', component: LandingPageComponent},
 {path: 'login', component: LoginComponent},
@@ -64,7 +65,8 @@ const config = {
     RegisterComponent,
     MainComponent,
     ProfileComponent,
-    HomeComponent
+    HomeComponent,
+    GraphComponent
   ],
   imports: [
     BrowserModule,
@@ -88,12 +90,14 @@ const config = {
      AngularFireModule.initializeApp(config),
      AngularFirestoreModule,
      AngularFireAuthModule,
+     RadioButtonModule,
      ChartModule,
      MatMenuModule,
      ButtonModule,
      SliderModule,
+     ToastModule,
     InputTextModule  ],
-  providers: [FooddataService],
+  providers: [FooddataService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

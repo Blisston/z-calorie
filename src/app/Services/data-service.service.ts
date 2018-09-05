@@ -6,7 +6,7 @@ import {
 } from 'angularfire2/firestore';
 import {AuthService } from './auth-service.service';
 
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 interface Users {
@@ -18,6 +18,7 @@ interface Users {
   gender: String;
   weightgoal?: String;
   id?: String;
+  updatedWeightMonth?: String;
   photourl: String;
 }
 interface Food {
@@ -39,6 +40,8 @@ export class DataService {
   fooddata = new EventEmitter();
   id;
   data;
+  key;
+  x: Subscription;
   constructor(public afs: AngularFirestore, public auth: AuthService) {}
   User(userdata) {
     this.postsCol = this.afs.collection(this.auth.userdetails.email);
@@ -57,14 +60,36 @@ export class DataService {
     this.newUser(userdata);
   }
   newUser(userdata) {
+    console.log(userdata);
     this.postsCol.add(userdata);
   }
   getUserData(email) {
     this.postsCol = this.afs.collection(email);
-    const data = this.postsCol.valueChanges();
+    const data = this.postsCol.snapshotChanges()
+    .pipe(
+      map(changes => {
+        return changes.map(a => {
+          const data1 = a.payload.doc.data() as Users;
+          data1.id = a.payload.doc.id;
+          return data1;
+        });
+      })
+    );
     data.subscribe(a => {
-      this.userdetails.emit(a[0]);
+      for (let i = 0; i <  a.length ; i++) {
+        if (a[i].email === email) {
+          this.userdetails.emit(a[i]);
+          this.key = a[i];
+        }
+      }
+
     });
+  }
+  updateUserData(email, userdet) {
+    console.log(`${email}/${this.key.id}`);
+    console.log(userdet);
+    this.itemdoc = this.afs.doc(`${email}/${this.key.id}`);
+    this.itemdoc.update(userdet);
   }
 FoodFire(f) {
   this.Foods = this.afs.collection(this.auth.userdetails.email);

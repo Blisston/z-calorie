@@ -29,36 +29,58 @@
       <form class="form">
         <input type="number" class="browser-default" [(ngModel)]="userdetails.height" name="height" placeholder="Height">
         <input type="number" class="browser-default" [(ngModel)]="userdetails.weight" name="weight" placeholder="Weight">
-       <mat-radio-group class="ra" [(ngModel)]="userdetails.gender" name="gender">
-            <mat-radio-button class="mr-4 " value="male">Male</mat-radio-button>
-            <mat-radio-button value="female">Female</mat-radio-button>
-          </mat-radio-group>
-          <mat-form-field class="drop" >
+        <input type="number" class="browser-default" [(ngModel)]="userdetails.age" name="age" placeholder="Age">
 
-              <mat-select name="gender" [(ngModel)]="userdetails.activity" name="height">
-                <mat-option value="light">Light</mat-option>
-                <mat-option value="medium">Medium</mat-option>
-                <mat-option value="heavy">Heavy</mat-option>
-              </mat-select>
-            </mat-form-field>
+       <mat-radio-group class="ra" [(ngModel)]="userdetails.gender" name="gender">
+            <mat-radio-button style="margin-right: 10px" value="male">Male</mat-radio-button>
+            <mat-radio-button style="margin-left: 10px" value="female">Female</mat-radio-button>
+          </mat-radio-group>
+
           <button type="submit" id="login-button" (click)="back()" >Back</button><br>
         <button type="submit" id="login-button" (click)="physicaltog()">Next</button>
         <br>
       </form>
     </div>
     <div *ngIf="!physical">
+        <div id="modal7" [style.display]="display" class="modal modal-fixed-footer" >
+            <div class="modal-content">
+              <h5>Target Nutrition</h5>
+
+
+              <div class="row">
+                  <label class="lable">Calories: &nbsp; &nbsp; &nbsp; &nbsp;</label>
+                  <input class="browser-default inp" type="text" [(ngModel)]="editcalorie" pInputText /><br><br>
+                  <label class="lable">Carbs: &nbsp; &nbsp; &nbsp; &nbsp;</label>
+                  <input style="margin-left: 16px;" class="browser-default inp" type="text" [(ngModel)]="editcarbmin" pInputText />&nbsp; &nbsp;
+                  <input class="browser-default inp" type="text" [(ngModel)]="editcarbmax" pInputText /><br><br>
+                  <label class="lable">Protein: &nbsp; &nbsp; &nbsp; &nbsp;</label>
+                  <input style="margin-left: 6px;" class="browser-default inp" type="text" [(ngModel)]="editpromin" pInputText />&nbsp; &nbsp;
+                  <input class="browser-default inp" type="text" [(ngModel)]="editpromax" pInputText /><br><br>
+                  <label class="lable">Fats: &nbsp; &nbsp; &nbsp; &nbsp;</label>
+                  <input style="margin-left: 28px;" class="browser-default inp" type="text" [(ngModel)]="editfatmin" pInputText />&nbsp; &nbsp;
+                  <input class="browser-default inp" type="text" [(ngModel)]="editfatmax" pInputText />
+
+                        </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <a class=" modal-action modal-close waves-effect waves-yellow btn-flat" (click)="save()">Save </a>
+              <a class=" modal-action modal-close waves-effect waves-yellow btn-flat" (click)="toggleDisplay()" >Close</a>
+            </div>
+          </div>
         <form class="form">
 
-         <mat-radio-group class="ra" [(ngModel)]="userdetails.weightgoal" name="goal">
-           <mat-label style="margin-right: 90px">I want to:</mat-label><br>
-              <mat-radio-button  value="lose">Lose Weight</mat-radio-button><br>
-              <mat-radio-button style="margin-right: 28px" value="maintain">Maintain</mat-radio-button><br>
-              <mat-radio-button value="gain">Buid Muscle</mat-radio-button>
-            </mat-radio-group>
-            <p>Your Target&nbsp;:2400 <br><span class="edit">Edit target</span></p>
+
+          <button    > Additionl info</button>
+
+            <p>Suggested Calorie&nbsp;:2400 <br><a class=" edit modal-trigger"(click)="toggleDisplay()"  data-target="modal7">Edit target</a></p>
             <button type="submit" id="login-button" (click)="physicaltog()" >Back</button><br>
           <button type="submit" id="login-button" (click)="submit1()" >Submit</button>
           <br>
+
+
         </form>
       </div>
     </div>
@@ -78,3 +100,5 @@
     <li></li>
   </ul>
 </div>
+
+
