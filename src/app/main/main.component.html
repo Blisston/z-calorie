@@ -3,17 +3,16 @@
 <img  Style="margin-top:30px;" src="assets/Images/apple.png" height="70px" class="circle" width="70px">
       <div Style="margin-top:50px;height:100px">
 
-       <a style="margin-left: 15px;" href="#"> <img height="40px" class="circle" width="40px" src={{photo}}>
+       <a [routerLink]="['Profile']" routerLinkActive="router-link-active"  style="margin-left: 15px;" href="#"> <img height="40px" class="circle" width="40px" src={{photo}}>
 <br>
       <span style="margin-left: 20px;">{{name}}</span></a>
 
       </div>
       <mat-divider ></mat-divider>
       <mat-list >
-          <mat-list-item><i class="fa fa-home"></i>Home</mat-list-item>
-        <mat-list-item  ><i class="fa fa-bookmark"></i>Saved Foods</mat-list-item>
-        <mat-list-item ><i class="fa fa-search"></i>Browse Foods</mat-list-item>
-        <mat-list-item ><i class="fas fa-chart-line" ></i>Track Weight</mat-list-item>
+          <mat-list-item [routerLink]="['/main']" ><i class="fa fa-home"></i>Home</mat-list-item>
+
+        <mat-list-item [routerLink]="['Graph']"  ><i class="fas fa-chart-line" ></i>Track Nutrition</mat-list-item>
         <br>
         <mat-divider ></mat-divider>
 
@@ -31,7 +30,7 @@
           <span></span>
           <span></span>
       </button>
-<app-home style="z-index: 100"></app-home>
+<router-outlet></router-outlet>
 </div>
 <ul class="bg-bubbles">
     <li></li>

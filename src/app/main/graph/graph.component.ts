@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MessageService} from 'primeng/api';
+import { DataService } from '../../Services/data-service.service';
+import {AuthService  } from '../../Services/auth-service.service';
+
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
@@ -8,31 +11,52 @@ import {MessageService} from 'primeng/api';
 export class GraphComponent implements OnInit {
 
   data: any;
+  calorieDate;
+  calorie;
   ngOnInit() {
+    this.dataService.getUserData(this.auth.userdetails.email);
+    this.dataService.userdetails.subscribe(a => {
+      this.calorieDate = a.caloriedate.split(',');
+      this.calorie = a.calories.split(',');
+      console.log(this.calorieDate);
+      console.log(this.calorie);
+      const list = [];
+      for (let j = 0; j < this.calorieDate.length; j++) {
+          list.push({'date': this.calorieDate[j], 'cal': this.calorie[j]});
+        }
+
+
+      list.sort(function (aa, b) {
+          return ((aa.date < b.date) ? -1 : ((aa.date === b.date) ? 0 : 1));
+      });
+
+
+      for (let k = 0; k < list.length; k++) {
+          this.calorieDate[k] = list[k].date;
+          this.calorie[k] = list[k].cal;
+      }
+      this.calorieChart();
+          });
   }
 
-  constructor(private messageService: MessageService) {
-    this.calorieChart();
+  constructor(private messageService: MessageService, private dataService: DataService, private auth: AuthService) {
+
+
   }
 
   calorieChart() {
+    console.log('s');
     this.data = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels: this.calorieDate,
       datasets: [
           {
-              label: 'First Dataset',
-              data: [65, 59, 80, 81, 56, 55, 40],
+              label: 'Calories',
+              data: this.calorie,
               fill: false,
               borderColor: '#4bc0c0'
           },
-          {
-              label: 'Second Dataset',
-              data: [28, 48, 40, 19, 86, 27, 90],
-              fill: false,
-              borderColor: '#565656'
-          }
       ]
-  }
+  };
   }
   selectData(event) {
       this.messageService.add({severity: 'info', summary: 'Data Selected',

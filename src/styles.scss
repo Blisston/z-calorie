@@ -5,7 +5,7 @@
 {
   margin: 0px;
   padding: 0px;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
   font-family: lato;
 }
 .mat-form-field-infix
@@ -21,3 +21,14 @@ body {
 // {
 //   left: 868px !important;
 // }
+.modal-overlay
+{
+  display: none !important;
+}
+.ui-widget-overlay {
+  width: 0px !important;
+  height: 0px !important;
+}
+.input-field label {
+  top:0 !important;
+}

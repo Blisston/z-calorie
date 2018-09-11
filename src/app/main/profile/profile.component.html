@@ -1,5 +1,5 @@
 
-<div style="background-color: rgb(236, 235, 235);height: 100%">
+<div *ngIf="z1" style="background-color: rgb(236, 235, 235);height: 100%">
 <div class="row" >
 
   <div class="col s6">
@@ -11,12 +11,13 @@
       <div class="details">
       <p>{{userdetails.name}}</p>
       <p>{{userdetails.email}}</p>
+      <P>I am &nbsp;{{userdetails.age}}</P>
       <p>{{userdetails.gender}}</p>
       <p>{{weightDisplay}}&nbsp;kg </p>
       <p>{{userdetails.height}}&nbsp;cm tall</p>
-      <p>{{userdetails.activity}}</p>
-      <a class="weightupdate modal-trigger" data-target="modal3"><i class="fa fa-pencil-square"></i>Edit your info</a><br>
-      <a class="weightupdate modal-trigger" data-target="modal4"><i class="fa fa-pencil-square" ></i>Update you weight</a>
+      <p>I am{{userdetails.activity}} active</p>
+      <a class="weightupdate modal-trigger" (click)="openModal(1)"  data-target="modal3"><i class="fa fa-pencil-square"></i>Edit your info</a><br>
+      <a class="weightupdate "(click)="showDialog()" ><i class="fa fa-pencil-square" ></i>Update you weight</a>
 
 
       </div>
@@ -31,44 +32,49 @@
 
 
   <!-- Modal Structure -->
-  <div id="modal3" class="modal">
+  <div id="modal3" class="modal modal-fixed-footer" style="width:50%; height: 350px;"  materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
     <div class="modal-content">
+      <div *ngIf="z1">
       <h6>Update your profile</h6>
       <label class="lable">Name: &nbsp; &nbsp; &nbsp; &nbsp;</label>
       <input class="browser-default inp" type="text" [(ngModel)]="userdetails.name" pInputText /><br><br>
       <label class="lable">Age: &nbsp; &nbsp; &nbsp; &nbsp;</label>
-      <input class="browser-default inp" type="text" [(ngModel)]="userdetails.email" pInputText /><br><br>
+      <input class="browser-default inp" type="text" [(ngModel)]="userdetails.age" pInputText /><br><br>
       <label class="lable">Height: &nbsp; &nbsp; &nbsp; &nbsp;</label>
       <input class="browser-default inp" type="text" [(ngModel)]="userdetails.height" pInputText /><br><br>
       <label class="lable">Gender: &nbsp; &nbsp; &nbsp; &nbsp;</label>
-      <p-radioButton name="groupname" value="male" label="male" [(ngModel)]="userdetails.gender">male</p-radioButton>&nbsp;
+      <p-radioButton name="groupname" value="male" label="male" [(ngModel)]="userdetails.gender">Male</p-radioButton>&nbsp;
       <p-radioButton name="groupname" value="female" label="Female" [(ngModel)]="userdetails.gender">Female</p-radioButton>
 <br>
 <br>
 <label class="lable">Activity: &nbsp; &nbsp; &nbsp; &nbsp;</label>
-      <p-radioButton name="groupname1" value="light" label="Male" [(ngModel)]="userdetails.activity">Low</p-radioButton>&nbsp;
-      <p-radioButton name="groupname1" value="medium" label="Female" [(ngModel)]="userdetails.activity">Medium</p-radioButton>&nbsp;
-      <p-radioButton name="groupname1" value="heavy" label="Female" [(ngModel)]="userdetails.activity">High</p-radioButton>&nbsp;
+      <p-radioButton name="groupname1" value="Low" [(ngModel)]="userdetails.activity">Low</p-radioButton>&nbsp;
+      <p-radioButton name="groupname1" value="Medium"  [(ngModel)]="userdetails.activity">Medium</p-radioButton>&nbsp;
+      <p-radioButton name="groupname1" value="High"  [(ngModel)]="userdetails.activity">High</p-radioButton>&nbsp;
       <br><br>
       <label class="lable">I want to: &nbsp; &nbsp; &nbsp; &nbsp;</label>
-      <p-radioButton name="groupname2" value="lose" label="lose" [(ngModel)]="userdetails.activity">Lose weight</p-radioButton>&nbsp;
-      <p-radioButton name="groupname2" value="maintain" label="maintain" [(ngModel)]="userdetails.activity">Maintain</p-radioButton>&nbsp;
-      <p-radioButton name="groupname2" value="gain" label="gain" [(ngModel)]="userdetails.activity">Gain</p-radioButton>&nbsp;
+      <p-radioButton name="groupname2" value="Lose"  [(ngModel)]="userdetails.weightgoal">Lose weight</p-radioButton>&nbsp;
+      <p-radioButton name="groupname2" value="Maintain" [(ngModel)]="userdetails.weightgoal">Maintain</p-radioButton>&nbsp;
+      <p-radioButton name="groupname2" value="Gain"  [(ngModel)]="userdetails.weightgoal">Gain weight</p-radioButton>&nbsp;
+    </div>
     </div>
     <div class="modal-footer">
+        <a  class="modal-close waves-effect  btn-flat" >Close</a>
       <a  class="modal-close waves-effect  btn-flat" (click)="update()">Save</a>
     </div>
   </div>
-  <div id="modal4" class="modal">
-    <div class="modal-content">
-<h5>Update weight</h5>
-{{updateWeight}}
-<label class="lable">New Weight: &nbsp; &nbsp; &nbsp; &nbsp;</label>
-      <input class="browser-default inp" type="text" name="updateWeight" [(ngModel)]="updateWeight" pInputText /><br><br>
-</div>
-<div class="modal-footer">
-  <a  class="modal-close waves-effect  btn-flat" (click)="weightUpdate()" >Save</a>
-</div>
-</div>
+
+  <p-dialog   [(visible)]="display" [modal]="true" [responsive]="true" [positionLeft]="404" [positionTop]="71" [width]="350" [minWidth]="200" [minY]="70"
+  [dismissableMask]="true" >
+  <h5>Update weight</h5>
+        {{updateWeight}}
+        <label class="lable">New Weight: &nbsp; &nbsp; &nbsp; &nbsp;</label>
+              <input class="browser-default inp" type="text" name="updateWeight" [(ngModel)]="updateWeight" pInputText /><br><br>
+
+  <p-footer>
+      <button class="waves-effect  btn-flat"  (click)="display=false" >Close</button>
+      <button class="waves-effect  btn-flat"  (click)="weightUpdate()" >Update</button>
+  </p-footer>
+</p-dialog>
 
 </div>

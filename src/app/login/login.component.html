@@ -1,3 +1,4 @@
+<div *ngIf="load" class="loading">Loading&#8230;</div>
 <div class="wrapper">
   <div class="container">
     <div *ngIf="register">
@@ -27,6 +28,36 @@
     <div *ngIf="!register">
       <div *ngIf="physical">
       <form class="form">
+          <div id="modal8" [style.display]="display" class="modal modal-fixed-footer" >
+              <div class="modal-content">
+                <h5 style="margin-bottom: 20px;">Additional details</h5>
+<label class="radiohead">I Want to</label>
+       <mat-radio-group class="ra" [(ngModel)]="userdetails.weightgoal" name="weightGoal">
+        <mat-radio-button style="margin-right: 10px" value="Lose">Lose</mat-radio-button>
+        <mat-radio-button style="margin-left: 10px" value="Maintain">Maintain</mat-radio-button>
+        <mat-radio-button style="margin-left: 10px" value="Gain">Gain</mat-radio-button>
+
+      </mat-radio-group>
+      <label class="radiohead">Activty </label>
+<mat-radio-group class="ra" [(ngModel)]="userdetails.activity" name="activityLevel">
+  <mat-radio-button style="margin-right: 10px" value="Low">Low</mat-radio-button>
+  <mat-radio-button style="margin-left: 10px" value="Medium">Medium</mat-radio-button>
+  <mat-radio-button style="margin-left: 10px" value="High">High</mat-radio-button>
+
+</mat-radio-group>
+<label class="radiohead">Body Fat</label>
+<mat-radio-group class="ra" [(ngModel)]="userdetails.bodyFat" name="bodyfat">
+  <mat-radio-button style="margin-right: 10px" value="Low">Low</mat-radio-button>
+  <mat-radio-button style="margin-left: 10px" value="Medium">Medium</mat-radio-button>
+  <mat-radio-button style="margin-left: 10px" value="High">High</mat-radio-button>
+
+</mat-radio-group>
+              </div>
+              <div class="modal-footer">
+                  <a class=" modal-action modal-close waves-effect waves-yellow btn-flat" (click)="saveAdditional()">Save </a>
+                <a class=" modal-action modal-close waves-effect waves-yellow btn-flat" (click)="toggleDisplay()" >Close</a>
+              </div>
+            </div>
         <input type="number" class="browser-default" [(ngModel)]="userdetails.height" name="height" placeholder="Height">
         <input type="number" class="browser-default" [(ngModel)]="userdetails.weight" name="weight" placeholder="Weight">
         <input type="number" class="browser-default" [(ngModel)]="userdetails.age" name="age" placeholder="Age">
@@ -35,10 +66,11 @@
             <mat-radio-button style="margin-right: 10px" value="male">Male</mat-radio-button>
             <mat-radio-button style="margin-left: 10px" value="female">Female</mat-radio-button>
           </mat-radio-group>
-
+          <a class=" add modal-trigger"(click)="toggleDisplay()"  data-target="modal8" >Additionl info</a><br>
           <button type="submit" id="login-button" (click)="back()" >Back</button><br>
         <button type="submit" id="login-button" (click)="physicaltog()">Next</button>
         <br>
+
       </form>
     </div>
     <div *ngIf="!physical">
@@ -73,7 +105,7 @@
         <form class="form">
 
 
-          <button    > Additionl info</button>
+
 
             <p>Suggested Calorie&nbsp;:2400 <br><a class=" edit modal-trigger"(click)="toggleDisplay()"  data-target="modal7">Edit target</a></p>
             <button type="submit" id="login-button" (click)="physicaltog()" >Back</button><br>

@@ -75,12 +75,14 @@ start() {
    }
   addFood(x) {
     this.del = 1;
-
-    this.Food.push(x);
     const index = this.Food.findIndex(x1 => x.recipe.label === x1.recipe.label );
-
-console.log("ind" + index);
+    if (index === -1)
+    {
+    this.Food.push(x);
     this.changed.emit(this.Food.slice());
+    }
+else {
+console.log("ind" + index);}
   }
   delete(x, date) {
     this.del = 1;

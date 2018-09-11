@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
-
+import {MaterializeAction} from 'angular2-materialize';
 import {FooddataService } from '../../Services/fooddata.service';
 import {DataService} from '../../Services/data-service.service';
 import {SharedService} from '../shared.service';
@@ -24,6 +24,17 @@ interface Users {
   calories?: String;
   caloriedate?: String;
   photourl: String;
+  tarcarbmin;
+tarcarbmax ;
+tarpromax ;
+tarpromin;
+tarfatmin;
+
+tarfatmax ;
+tarcalorie;
+
+
+
 }
 @Component({
   selector: 'app-home',
@@ -54,6 +65,7 @@ interface Users {
   ]
 })
 export class HomeComponent implements OnInit {
+  modalActions = new EventEmitter<string|MaterializeAction>();
 img ;
 name;
 food = '';
@@ -69,9 +81,10 @@ editpromax ;
 editpromin;
 editfatmin;
 editfatmax ;
+display ='none';
 rangeValues: number[] = [0,  100];
 date;
-zz = new Date();
+zz = new Date()
 xx = new Date();
 servingtime = '';
 abc: Food = {
@@ -105,12 +118,22 @@ constructor(private foodservice: FooddataService, private data1: DataService, pr
   ngOnInit() {
     this.data1.userdetails.subscribe(a => {
       this.userDetails = a;
-
+      this.tarcalorie = this.userDetails.tarcalorie;
+      this.tarcarbmin = this.userDetails.tarcarbmin;
+      this.tarcarbmax = this.userDetails.tarcarbmax;
+      this.tarfatmin = this.userDetails.tarfatmin;
+      this.tarfatmax = this.userDetails.tarfatmax;
+      this.tarpromin = this.userDetails.tarpromin;
+      this.tarpromax = this.userDetails.tarpromax;
+console.log(this.userDetails);
       this.addedCalorie();
     });
+
+
     this.FoodList = this.shared.getFood();
     this.shared.changed.subscribe(x => {
       this.FoodList = x;
+      console.log(this.FoodList);
       const actual = this.shared.getsize();
       if (actual == this.FoodList.length) {
         this.loader = false;
@@ -122,6 +145,12 @@ constructor(private foodservice: FooddataService, private data1: DataService, pr
   }
   addedCalorie() {
 
+  }
+  openModal() {
+    this.modalActions.emit({action:"modal",params:['open']});
+  }
+  closeModal() {
+    this.modalActions.emit({action:"modal",params:['close']});
   }
   onChange(newValue) {
     this.shared.del = 0;
@@ -161,14 +190,14 @@ del() {
   this.data.deleteFood(3);
 }
 save() {
-  this.tarcalorie = this.editcalorie;
-  this.tarcarbmin = this.editcarbmin;
-  this.tarcarbmax = this.editcarbmax;
-  this.tarfatmin = this.editfatmin;
-  this.tarfatmax = this.editfatmax;
-  this.tarpromin = this.editpromin;
-  this.tarpromax = this.editpromax;
-
+  this.userDetails.tarcalorie = this.editcalorie;
+  this.userDetails.tarcarbmin = this.editcarbmin;
+  this.userDetails.tarcarbmax = this.editcarbmax;
+  this.userDetails.tarfatmin = this.editfatmin;
+  this.userDetails.tarfatmax = this.editfatmax;
+  this.userDetails.tarpromin = this.editpromin;
+  this.userDetails.tarpromax = this.editpromax;
+  this.data1.updateUserData(this.userDetails.email, this.userDetails);
 }
 delete(x, i, date) {
   console.log(this.trackDate);
@@ -243,6 +272,7 @@ console.log(this.userDetails);
 fav(x) {
 
 }
+
 
 searchFood() {
   console.log(this.search);
