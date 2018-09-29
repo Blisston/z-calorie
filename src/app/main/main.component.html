@@ -1,7 +1,8 @@
-<div class="wrapper">
-  <div style="line-height: 20px;"  id="sidebar" [ngClass]="active ? 'active' : 'false'">
+<div *ngIf="load" class="loading">Loading&#8230;</div>
+  <div style="line-height: 20px;" class="zbs"  id="sidebar" [ngClass]="active ? 'active' : 'false'">
+    <div style="position: absolute">
 <img  Style="margin-top:30px;" src="assets/Images/apple.png" height="70px" class="circle" width="70px">
-      <div Style="margin-top:50px;height:100px">
+      <div Style="margin-top:50px;height:75px">
 
        <a [routerLink]="['Profile']" routerLinkActive="router-link-active"  style="margin-left: 15px;" href="#"> <img height="40px" class="circle" width="40px" src={{photo}}>
 <br>
@@ -11,18 +12,19 @@
       <mat-divider ></mat-divider>
       <mat-list >
           <mat-list-item [routerLink]="['/main']" ><i class="fa fa-home"></i>Home</mat-list-item>
-
+          <mat-list-item [routerLink]="['Exercise']" ><i class="fas fa-dumbbell"></i>Exercise</mat-list-item>
         <mat-list-item [routerLink]="['Graph']"  ><i class="fas fa-chart-line" ></i>Track Nutrition</mat-list-item>
-        <br>
         <mat-divider ></mat-divider>
 
         <mat-list-item ><i class="fa fa-share"></i>Share</mat-list-item>
+        <mat-list-item (click)="logout()"><i class="fas fa-sign-out-alt"  ></i>Log out</mat-list-item>
       </mat-list>
-
-
+      <i class=""></i>
+</div>
 
 
     </div>
+    <div class="wrapper">
   <div id="content">
       <button type="button" id="sidebarCollapse"  (click)="toggle()"
       [ngClass]="active ? 'active' : 'false'"  class="navbar-btn">

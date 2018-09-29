@@ -48,4 +48,6 @@ export class AuthService {
 getUserDEtails() {
   return this.userdetails;
 }
+logout() {
+}
 }

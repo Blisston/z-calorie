@@ -32,3 +32,8 @@ body {
 .input-field label {
   top:0 !important;
 }
+body .ui-dialog .ui-dialog-content
+{
+  max-height: 350px !important;
+  height: 350px !important;
+}

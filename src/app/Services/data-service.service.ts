@@ -87,7 +87,7 @@ export class DataService {
   }
   updateUserData(email, userdet) {
     console.log(`${email}/${this.key.id}`);
-    console.log(userdet);
+    console.log('ghcccccccccccccccccccccccccccccccccccccccccccccccccccccccc');
     this.itemdoc = this.afs.doc(`${email}/${this.key.id}`);
     this.itemdoc.update(userdet);
   }
@@ -140,4 +140,24 @@ getFoodData(email) {
       i = 1000;
     });
     }
+    updateFood(i, x) {
+      this.Foods = this.afs.collection(this.auth.userdetails.email);
+      this.data = this.Foods.snapshotChanges()
+      .pipe(
+        map(changes => {
+          return changes.map(a => {
+            const data = a.payload.doc.data() as Food;
+            data.id = a.payload.doc.id;
+            return data;
+          });
+        })
+      );
+      this.data.subscribe(item => {
+        this.id = item[i].id;
+        console.log(this.id +' ' + x);
+        this.Fooddoc = this.afs.doc(`blisstonkirubha@gmail.com/${this.id}`);
+        this.Fooddoc.update(x);
+        i = 1000;
+      });
+      }
 }

@@ -45,6 +45,7 @@ import {SelectButtonModule} from 'primeng/selectbutton';
 import 'materialize-css';
 import { MaterializeModule } from 'angular2-materialize';
 import {DialogModule} from 'primeng/dialog';
+import { ExerciseComponent } from './main/exercise/exercise.component';
 
 
 const routes: Routes = [
@@ -55,6 +56,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'Profile', component: ProfileComponent},
   {path: 'Graph', component: GraphComponent},
+  {path: 'Exercise', component: ExerciseComponent},
 ]},
 
 ]
@@ -76,7 +78,8 @@ const config = {
     MainComponent,
     ProfileComponent,
     HomeComponent,
-    GraphComponent
+    GraphComponent,
+    ExerciseComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter,OnDestroy } from '@angular/core';
 import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
 import {MaterializeAction} from 'angular2-materialize';
 import {FooddataService } from '../../Services/fooddata.service';
@@ -64,7 +64,7 @@ tarcalorie;
 
   ]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   modalActions = new EventEmitter<string|MaterializeAction>();
 img ;
 name;
@@ -81,7 +81,6 @@ editpromax ;
 editpromin;
 editfatmin;
 editfatmax ;
-display ='none';
 rangeValues: number[] = [0,  100];
 date;
 zz = new Date()
@@ -101,72 +100,114 @@ data: any;
 options;
 tarcalorie;
 tarpromin;
+exist = false;
 userDetails: Users;
 tarpromax;
 tarfatmin;
 tarfatmax;
 tarcarbmin;
 tarcarbmax;
-trackDate = new Date().getDate();
+trackDate ;
 calorieTrack = [];
 calorieDate = [];
 loader = true;
 addCalor = 0;
+me = false;
+display: boolean = false;
+display1: boolean = false;
+showDialog() {
+    this.display = true;
+}
+showDialog1() {
+  this.display1 = true;
+}
 constructor(private foodservice: FooddataService, private data1: DataService, private shared: SharedService) {
   this.shared.date = this.zz;
+  this.shared.xx();
+
+  this.data1.userdetails.subscribe(a => {
+    this.userDetails = a;
+    this.ini();
+  })
+
+
+
+}
+ini()
+{
+    this.editcalorie = this.shared.editcalorie;
+    this.editcarbmin = this.shared.editcarbmin;
+    this.editcarbmax = this.shared.editcarbmax;
+    this.editfatmin = this.shared.editfatmin;
+    this.editfatmax = this.shared.editfatmax;
+    this.editpromin = this.shared.editpromin;
+    this.editpromax = this.shared.editpromax;
+
+    this.addedCalorie();
+    console.log('cons');
+
+    console.log('sixe00'+ this.shared.getsize());
+    if(this.shared.getsize() === 0) {
+      this.loader = false;
+    }
+    this.me=true;
+    this.sum();
+
 }
   ngOnInit() {
-    this.data1.userdetails.subscribe(a => {
-      this.userDetails = a;
-      this.tarcalorie = this.userDetails.tarcalorie;
-      this.tarcarbmin = this.userDetails.tarcarbmin;
-      this.tarcarbmax = this.userDetails.tarcarbmax;
-      this.tarfatmin = this.userDetails.tarfatmin;
-      this.tarfatmax = this.userDetails.tarfatmax;
-      this.tarpromin = this.userDetails.tarpromin;
-      this.tarpromax = this.userDetails.tarpromax;
-console.log(this.userDetails);
-      this.addedCalorie();
-    });
-
-
+    this.trackDate= this.shared.currentdate;
+    console.log('sdfa'+ this.trackDate);
+    this.onChange(new Date(2018,9,this.trackDate));
+    console.log('ng');
     this.FoodList = this.shared.getFood();
     this.shared.changed.subscribe(x => {
+      this.trackDate = this.shared.currentdate;
       this.FoodList = x;
-      console.log(this.FoodList);
       const actual = this.shared.getsize();
+      console.log(this.me);
+
       if (actual == this.FoodList.length) {
         this.loader = false;
       }
-
-      this.sum();
+if(this.me) {
+  console.log('h');
+      this.sum();}
+      else {
+        this.ini();
+      }
     });
-
   }
+
   addedCalorie() {
 
   }
   openModal() {
-    this.modalActions.emit({action:"modal",params:['open']});
+    console.log('dsa');
+    this.modalActions.emit({action: 'modal', params : ['open']});
   }
   closeModal() {
     this.modalActions.emit({action:"modal",params:['close']});
   }
   onChange(newValue) {
+
     this.shared.del = 0;
     this.a = this.b = this.c = this.d = 0;
-    console.log(newValue);
-    this.zz = newValue;  // don't forget to update the model here
-    // ... do other stuff here ...
+
+    this.zz = newValue;
     this.shared.date = this.zz;
     this.xx = new Date(newValue);
 const x = this.xx.getDate();
 this.trackDate = x;
-    console.log(x);
+this.shared.currentdate = this.trackDate;
+console.log(this.trackDate);
+
     this.FoodList = [];
     this.shared.Food = [];
     this.shared.foodData(x);
-
+    this.loader = true;
+    if(this.shared.getsize() === 0) {
+      this.loader = false;
+    }
 }
   ate(x,y) {
     this.a = this.b = this.c = this.d = 0;
@@ -175,20 +216,31 @@ this.trackDate = x;
     this.date = new Date(this.xx);
     this.abc.date = this.date.getDate();
     this.abc.servingtime = this.servingtime;
-    console.log(x);
- this.data1.addFoodData(this.abc);
- //this.shared.Food = [];
- //this.shared.foodData(this.zz);
- this.FoodList.push(y);
- console.log(y);
+if(this.FoodList.length ===0){
+
+  this.data1.addFoodData(this.abc);
+    this.FoodList.push(y);
+}
+for (let i = 0 ; i < this.FoodList.length ; i++) {
+  if(this.FoodList[i].recipe.label === x){
+this.exist = true;
+break;
+  }
+  else{this.exist = false;}
+}
+  if(this.exist)
+   {
+    this.abc.servingtime = '2';
+    this.shared.update(x, this.abc , this.trackDate);
+  } else {
+    this.data1.addFoodData(this.abc);
+    this.FoodList.push(y);
+  }
+
  this.addedCalorie();
  this.sum();
 }
-del() {
-  console.log('fes');
 
-  this.data.deleteFood(3);
-}
 save() {
   this.userDetails.tarcalorie = this.editcalorie;
   this.userDetails.tarcarbmin = this.editcarbmin;
@@ -200,7 +252,6 @@ save() {
   this.data1.updateUserData(this.userDetails.email, this.userDetails);
 }
 delete(x, i, date) {
-  console.log(this.trackDate);
   this.FoodList.splice(i, 1);
   this.shared.Food = [];
 this.shared.delete(x,this.trackDate);
@@ -208,43 +259,52 @@ this.sum();
 
 }
 handleChange(e) {
-  console.log(e.values);
+
   // this.editcarbmin = e.values[0];
   // this.editcarbmax = e.values[1];
 }
 
 sum() {
+  let xb=0;
   this.a = this.b = this.c = this.d = 0;
+  const bb = this.shared.calorieDate;
+let cc = this.shared.calories;
   this.FoodList.forEach(a => {
+    xb++;
    this.a = Math.floor(this.a + a.recipe.totalNutrients.FAT.quantity);
    this.b = Math.floor(this.b + a.recipe.totalNutrients.CHOCDF.quantity);
    this.c = Math.floor(this.c + a.recipe.totalNutrients.PROCNT.quantity);
    this.d = Math.floor(this.d + a.recipe.calories);
+
+  this.calorieTrack = this.shared.calories.split(',');
+  this.calorieDate = this.shared.calorieDate.split(',');
 console.log(this.trackDate);
-  this.calorieTrack = this.userDetails.calories.split(',');
-  this.calorieDate = this.userDetails.caloriedate.split(',');
   const x = this.calorieDate.indexOf(`${this.trackDate}`);
-  console.log(`${this.trackDate}`);
+
   if (this.calorieDate.indexOf(`${this.trackDate}`) === -1) {
-    this.userDetails.calories = this.userDetails.calories + `,${this.d}` ;
-    this.userDetails.caloriedate = this.userDetails.caloriedate + `,${this.trackDate}`;
-    console.log(this.userDetails);
+    this.shared.calories = this.shared.calories + `,${this.d}` ;
+    this.shared.calorieDate = this.shared.calorieDate + `,${this.trackDate}`;
+
 } else {
+  console.log("index is "+x);
 this.calorieTrack[x] = this.d;
 this.calorieDate[x] = this.trackDate;
-console.log(this.calorieTrack);
-console.log(this.calorieDate);
-this.userDetails.calories = this.calorieTrack.join();
-  this.userDetails.caloriedate = this.calorieDate.join();
-console.log(this.d);
-}
-//this.data1.updateUserData(this.userDetails.email, this.userDetails);
-console.log(this.userDetails);
-  this.data1.updateUserData(this.userDetails.email, this.userDetails);
-  });
-  // this.userDetails.calories = this.calorieTrack.join();
-  // this.userDetails.caloriedate = this.calorieDate.join();
 
+this.shared.calories = this.calorieTrack.join();
+  this.shared.calorieDate = this.calorieDate.join();
+
+}
+
+this.shared.sadcas(this.shared.calories,this.shared.calorieDate);
+
+  });
+  console.log(cc +' '+ this.shared.calories);
+
+  if(cc!==this.shared.calories && xb===this.shared.getsize()){
+    console.log('dtyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');
+  this.data1.updateUserData(this.shared.mmm.email, this.shared.mmm);
+cc=this.shared.calories;
+}
   this.data = {
     labels: ['FAT', 'Carbs', 'Protein'],
     datasets: [
@@ -275,11 +335,14 @@ fav(x) {
 
 
 searchFood() {
-  console.log(this.search);
   this.foodservice.getDetails(this.search).subscribe(res1 => {
     this.searchList = res1.json().hits;
-    console.log(this.searchList[0].recipe);
   });
 
+}
+ngOnDestroy() {
+  this.shared.currentdate = this.trackDate;
+  this.FoodList = [];
+  this.shared.Food = [];
 }
 }

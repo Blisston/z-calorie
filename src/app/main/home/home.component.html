@@ -12,8 +12,8 @@
           </mat-form-field>
 
 
-          <button class="calender" (click)="picker.open()">
-            <i class="fa fa-calendar right"></i>Go to
+          <button class="calender tryoutbutton" (click)="picker.open()">
+            <i style="padding-top: 5px" class="fa fa-calendar right"></i>Go to
           </button>
 
     <p-chart type="pie" [data]="data" [options]="options"></p-chart>
@@ -61,16 +61,16 @@
           </p>
         </div>
       </div>
-      <div class="col s6" style="position: relative;">
-        <h6 class="left-align">Target values</h6><span><a class=" editbtn modal-trigger" (click)="toggleDisplay()" data-target="modal2">Edit</a></span>
-        <p class=" purple-textleft-align">{{tarcalorie}}
-        </p>
+      <div *ngIf="me" class="col s6" style="position: relative;">
+        <h6 class="left-align">Target values</h6><span><a class=" editbtn modal-trigger" (click)="showDialog()" data-target="modal2">Edit</a></span>
+        <p class=" purple-textleft-align">{{this.editcalorie}}
+      </p>
         <br>
-        <p class=" purple-textleft-align">{{tarcarbmin}}-{{tarcarbmax}}
+        <p class=" purple-textleft-align">{{this.editcarbmin}}-{{this.editcarbmax}}
         </p>
-        <p class=" purple-textleft-align">{{tarpromin}}-{{tarpromax}}
+        <p class=" purple-textleft-align">{{this.editpromin}}-{{this.editpromax}}
         </p>
-        <p class=" purple-textleft-align">{{tarfatmin}}-{{tarfatmax}}
+        <p class=" purple-textleft-align">{{this.editfatmin}}-{{this.editfatmax}}
         </p>
         <br>
         <p class=" purple-textleft-align">2100
@@ -81,44 +81,11 @@
     </div>
   </div>
   <div class="col s6 rightside" [@listAnimation]="FoodList.length">
-      <button class="button modal-trigger" (click)="openModal()" data-target="modal1">Add Food</button>
+      <button class="button modal-trigger" (click)="showDialog1()">Add Food</button>
 
-  <div id="modal1"  class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions" style="width:50%; height: 350px;z-index: 10000">
+  <div id="modal1"  class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions" style="width:50%; height: 350px;z-index: 1000000">
       <div class="modal-content">
-        <h5>Add Food</h5>
-
-        <div class="row">
-          <form class="col s12">
-            <div class="row modal-form-row">
-              <div class="input-field col s12">
-                <input id="food" [(ngModel)]="search" name="search" type="text" class="validate" tooltipPosition="top" pTooltip="Enter your username">
-                <label for="food">Enter recipe</label>
-              </div>
-              <button class="waves-effect waves-light btn " (click)="searchFood()">Search</button>
-
-            </div>
-
-          </form>
-        </div>
-        <div style="display: block" class="row">
-          <div class="col s12" [@listAnimation]="searchList.length">
-            <div id="list" class="card horizontal foodlist" *ngFor="let food of searchList">
-              <div class="card-image">
-                <img style="width: 90px;" src={{food.recipe.image}}>
-              </div>
-              <div class="card-stacked">
-                <div class="card-content">
-                    <i class="fa fa-plus-circle"  (click)="ate(food.recipe.label,food)"></i>
-                  <h6>{{food.recipe.label}}</h6>
-                  <p>{{food.recipe.calories |number: '1.0-0'}}Calories</p>
-                  <p>1 Servings</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
+       </div>
       <div class="modal-footer">
         <a class=" modal-action modal-close waves-effect waves-yellow btn-flat" (click)="closeModal()">Close</a>
       </div>
@@ -136,48 +103,90 @@
             </mat-menu>
           <h6 >{{food.recipe.label}}</h6>
           <p>{{food.recipe.calories   |number: '1.0-0'}} Calories</p>
-          <p>1 Servings</p>
+          <p>{{food.recipe.totalTime}}Servings</p>
         </div>
 
       </div>
 
     </div>
-    <mat-spinner *ngIf="loader"></mat-spinner>
+    <div *ngIf="loader" style="margin-left: 160px" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
   </div>
 
 
 
 
-  <div id="modal2" [style.display]="display" class="modal modal-fixed-footer" style="width:50%; height: 350px;">
-    <div class="modal-content">
-      <h5>Target Nutrition</h5>
 
-      <div class="row">
+
+</div>
+
+<p-dialog   [(visible)]="display" [modal]="true" [responsive]="true" [positionLeft]="404" [positionTop]="71" [height]="400" [width]="400" [minWidth]="200" [minY]="70"
+[dismissableMask]="true" >
+<h5>Target Nutrition</h5>
+
+<div class="row">
 <label class="lable">Calories: &nbsp; &nbsp; &nbsp; &nbsp;</label>
-<input class="browser-default inp" type="text" [(ngModel)]="editcalorie" pInputText /><br><br>
+<input class="browser-default inp" type="text" [(ngModel)]="editcalorie" pInputText /><br>
 <label class="lable">Carbs: &nbsp; &nbsp; &nbsp; &nbsp;</label>
 <input style="margin-left: 16px;" class="browser-default inp" type="text" [(ngModel)]="editcarbmin" pInputText />&nbsp; &nbsp;
-<input class="browser-default inp" type="text" [(ngModel)]="editcarbmax" pInputText /><br><br>
+<input class="browser-default inp" type="text" [(ngModel)]="editcarbmax" pInputText /><br>
 <label class="lable">Protein: &nbsp; &nbsp; &nbsp; &nbsp;</label>
 <input style="margin-left: 6px;" class="browser-default inp" type="text" [(ngModel)]="editpromin" pInputText />&nbsp; &nbsp;
-<input class="browser-default inp" type="text" [(ngModel)]="editpromax" pInputText /><br><br>
+<input class="browser-default inp" type="text" [(ngModel)]="editpromax" pInputText /><br>
 <label class="lable">Fats: &nbsp; &nbsp; &nbsp; &nbsp;</label>
 <input style="margin-left: 28px;" class="browser-default inp" type="text" [(ngModel)]="editfatmin" pInputText />&nbsp; &nbsp;
 <input class="browser-default inp" type="text" [(ngModel)]="editfatmax" pInputText />
 
-      </div>
-
-
-    </div>
-    <div class="modal-footer">
-        <a class=" modal-action modal-close waves-effect waves-yellow btn-flat" (click)="save()">Save </a>
-      <a class=" modal-action modal-close waves-effect waves-yellow btn-flat" (click)="toggleDisplay()">Close</a>
-    </div>
-  </div>
-
 </div>
 
 
+<p-footer>
+    <button class="waves-effect  btn-flat"  (click)="display=false" >Close</button>
+    <button class="waves-effect  btn-flat" (click)="save()" >Update</button>
+</p-footer>
+</p-dialog>
 
 
 
+
+<p-dialog   [(visible)]="display1" [modal]="true" [responsive]="true" [positionLeft]="404" [positionTop]="71" [height]="400"  [width]="400" [minWidth]="200" [minY]="70"
+[dismissableMask]="true" >
+
+<h5>Add Food</h5>
+
+<div class="row">
+  <form class="col s12">
+    <div class="row modal-form-row">
+      <div class="input-field col s12">
+        <input id="food" [(ngModel)]="search" name="search" type="text" class="validate" tooltipPosition="top" pTooltip="Enter your username">
+        <label for="food">Enter recipe</label>
+      </div>
+      <button class="waves-effect waves-light btn " (click)="searchFood()">Search</button>
+
+    </div>
+
+  </form>
+</div>
+<div style="display: block; " class="row">
+  <div class="col s12" [@listAnimation]="searchList.length">
+    <div id="list" class="card horizontal foodlist" *ngFor="let food of searchList">
+      <div class="card-image">
+        <img style="width: 90px;" src={{food.recipe.image}}>
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+            <i class="fa fa-plus-circle"  (click)="ate(food.recipe.label,food)"></i>
+          <h6>{{food.recipe.label}}</h6>
+          <p>{{food.recipe.calories |number: '1.0-0'}}Calories</p>
+          <p>1 Servings</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p-footer>
+    <button class="waves-effect  btn-flat"  (click)="display1=false" >Close</button>
+    <button class="waves-effect  btn-flat" (click)="save()"  >Update</button>
+</p-footer>
+</p-dialog>

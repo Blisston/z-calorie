@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FooddataService } from '../Services/fooddata.service';
+import {Router} from '@angular/router';
 import {DataService } from '../Services/data-service.service';
 import {AuthService  } from '../Services/auth-service.service';
 import {SharedService} from './shared.service';
@@ -14,7 +14,8 @@ export class MainComponent implements OnInit {
   active =  false;
   photo;
   name = '';
-  constructor(private user: DataService, private auth: AuthService, private shared: SharedService) {
+  load = true;
+  constructor(private user: DataService, private auth: AuthService, private shared: SharedService, private router: Router) {
 
    }
 
@@ -23,10 +24,17 @@ export class MainComponent implements OnInit {
     this.user.userdetails.subscribe(a => {
     this.name = a.name;
     this.photo = a.photourl;
+    if(this.name!== '') {
+      this.load = false;
+    }
     });
   }
   toggle() {
     this.active = !this.active;
+}
+logout() {
+  this.auth.logout();
+  this.router.navigate(['/']);
 }
 
 }

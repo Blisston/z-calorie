@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="col s6">
+    <div class="content">
+				<div class="grid">
+					<figure (click)="showDialog()" class="effect-sadie">
+						<img src="assets/Images/run.jpeg" alt="img02"/>
+						<figcaption>
+							<h4>Running</h4>
+							<p>Click to add running time</p>
+						</figcaption>
+          </figure>
+          </div>
+          <div style="padding-top: 60px" class="grid">
+					<figure class="effect-sadie">
+						<img src="assets/Images/jog.jpeg" alt="img14"/>
+						<figcaption>
+								<h4>Running</h4>
+							<p>Click to add running time</p>
+
+						</figcaption>
+					</figure>
+        </div>
+        <div style="padding-top: 60px" class="grid">
+					<figure class="effect-sadie">
+						<img src="assets/Images/bic.jpg" alt="img14"/>
+						<figcaption>
+                <h4>Running</h4>
+                <p>Click to add running time</p>
+
+						</figcaption>
+					</figure>
+        </div>
+        <div style="padding-top: 60px" class="grid">
+					<figure class="effect-sadie">
+						<img src="assets/Images/swim.jpeg" alt="img14"/>
+						<figcaption>
+                <h4>Running</h4>
+                <p>Click to add running time</p>
+
+						</figcaption>
+					</figure>
+        </div>
+        <div style="padding-top: 60px" class="grid">
+					<figure class="effect-sadie">
+						<img src="assets/Images/dance.jpeg" alt="img14"/>
+						<figcaption>
+                <h4>Running</h4>
+                <p>Click to add running time</p>
+
+						</figcaption>
+					</figure>
+				</div>
+
+			</div>
+</div>
+<div style="position: relative" class="col s6">
+  <p class="cal"><span  style="font-size: 100px;" span>1000</span>Calories</p>
+</div>
+</div>
+<p-dialog   [(visible)]="display" [modal]="true" [responsive]="true" [positionLeft]="404" [positionTop]="71" [width]="350" [minWidth]="200" [minY]="70"
+[dismissableMask]="true" >
+<h5>Update weight</h5>
+
+
+<p-footer>
+    <button class="waves-effect  btn-flat"  (click)="display=false" >Close</button>
+    <button class="waves-effect  btn-flat"   >Update</button>
+</p-footer>
+</p-dialog>
