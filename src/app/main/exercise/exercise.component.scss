@@ -27,7 +27,8 @@
 	display: block;
 	min-height: 100%;
 	max-width: 100%;
-	opacity: 0.8;
+  opacity: 0.8;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
 }
 
 .grid figure figcaption {
@@ -142,6 +143,55 @@ figure.effect-sadie:hover p {
 .cal
 {
   position: absolute;
-  top: 70px;
-  left: 70px;
+  top: 170px;
+  left: 0px;
+  width: 100%;
+
+}
+.cdk-overlay-pane {
+  position: absolute !important;
+  top: 0px !important;
+  left: 0px !important;
+}
+.left {
+  position: relative; background-color: white;
+  height: auto;
+  width: 373px !important;
+  margin-top: 25px;
+  margin-left: 6px;
+  height: 100vh;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+}
+.button {
+  margin-top: 10px;
+  color: rgb(241, 196, 15) !important;
+  border: 1px solid rgb(241, 196, 15) !important;
+  background-color: white !important;
+  border-radius: 2%;
+  padding: 8px 20px;
+  word-spacing: 3px;
+  font-size: 20px;
+  width: 100%;
+  transition: .3s;
+}
+.button:hover {
+
+  color: white !important;
+
+  background-color: rgb(241, 196, 15) !important;
+}
+.quot
+{
+  position: absolute;
+  font-size: 30px;
+  top: 295px;
+  left: 0px;
+  width: 100%;
+  text-align: center;
+}
+.cdk-overlay-pane {
+  position: absolute !important;
+  top: 90px !important;
+  left: 577px !important;
 }

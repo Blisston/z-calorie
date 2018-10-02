@@ -13,28 +13,56 @@ export class GraphComponent implements OnInit {
   data: any;
   calorieDate;
   calorie;
+  fats;
+  carbs;
+  proteins;
+  data1;
+
+  data2;
+  data3;
+  tarCalorie = [];
+  exercise;
+
   ngOnInit() {
+
     this.dataService.getUserData(this.auth.userdetails.email);
     this.dataService.userdetails.subscribe(a => {
       this.calorieDate = a.caloriedate.split(',');
       this.calorie = a.calories.split(',');
-      console.log(this.calorieDate);
-      console.log(this.calorie);
+      this.fats = a.fats.split(',');
+      this.carbs = a.carbs.split(',');
+      this.proteins = a.proteins.split(',');
+      this.exercise = a.exercise.split(',');
+
       const list = [];
       for (let j = 0; j < this.calorieDate.length; j++) {
-          list.push({'date': this.calorieDate[j], 'cal': this.calorie[j]});
+          list.push({'date': this.calorieDate[j], 'cal': this.calorie[j], 'pro': this.proteins[j],
+           'fat': this.fats[j], 'carbs': this.carbs[j]});
         }
 
 
-      list.sort(function (aa, b) {
-          return ((aa.date < b.date) ? -1 : ((aa.date === b.date) ? 0 : 1));
-      });
+      for (let i = 0 ; i < list.length ; i++) {
+        for (let j = i; j < list.length ; j++) {
+          if (+(list[i].date) > +(list[j].date)) {
 
+           const temp = list[i];
+           list[i] = list[j];
+           list[j] = temp;
 
+          }
+        }
+      }
+      console.log(list);
       for (let k = 0; k < list.length; k++) {
+        this.tarCalorie.push(a.tarcalorie);
           this.calorieDate[k] = list[k].date;
           this.calorie[k] = list[k].cal;
+          this.carbs[k] = list[k].carbs;
+          this.proteins[k] = list[k].pro;
+          this.fats[k] = list[k].fat;
       }
+      console.log(this.carbs);
+
       this.calorieChart();
           });
   }
@@ -45,7 +73,7 @@ export class GraphComponent implements OnInit {
   }
 
   calorieChart() {
-    console.log('s');
+    console.log(this.tarCalorie);
     this.data = {
       labels: this.calorieDate,
       datasets: [
@@ -55,8 +83,53 @@ export class GraphComponent implements OnInit {
               fill: false,
               borderColor: '#4bc0c0'
           },
+            {
+                label: 'Target Calorie',
+                data: this.tarCalorie,
+                fill: false,
+                borderColor: '#4bc0c0'
+            },
+            {
+              label: 'Calories burned',
+              data: this.exercise,
+              fill: false,
+              borderColor: '#4bc0c0'
+          }
       ]
   };
+  this.data1 = {
+    labels: this.calorieDate,
+    datasets: [
+        {
+            label: 'Carbs',
+            data: this.carbs,
+            fill: false,
+            borderColor: '#4bc0c0'
+        },
+    ]
+};
+this.data2 = {
+  labels: this.calorieDate,
+  datasets: [
+      {
+          label: 'Protein',
+          data: this.proteins,
+          fill: false,
+          borderColor: '#4bc0c0'
+      },
+  ]
+};
+this.data3 = {
+  labels: this.calorieDate,
+  datasets: [
+      {
+          label: 'Fats',
+          data: this.fats,
+          fill: false,
+          borderColor: '#4bc0c0'
+      },
+  ]
+};
   }
   selectData(event) {
       this.messageService.add({severity: 'info', summary: 'Data Selected',

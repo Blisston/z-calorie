@@ -109,6 +109,9 @@ tarcarbmin;
 tarcarbmax;
 trackDate ;
 calorieTrack = [];
+carbsTrack = [];
+proteinTrack = [];
+fatTrack = [];
 calorieDate = [];
 loader = true;
 addCalor = 0;
@@ -242,14 +245,15 @@ break;
 }
 
 save() {
-  this.userDetails.tarcalorie = this.editcalorie;
-  this.userDetails.tarcarbmin = this.editcarbmin;
-  this.userDetails.tarcarbmax = this.editcarbmax;
-  this.userDetails.tarfatmin = this.editfatmin;
-  this.userDetails.tarfatmax = this.editfatmax;
-  this.userDetails.tarpromin = this.editpromin;
-  this.userDetails.tarpromax = this.editpromax;
-  this.data1.updateUserData(this.userDetails.email, this.userDetails);
+  this.shared.mmm.tarcalorie = this.editcalorie;
+  this.shared.mmm.tarcarbmin = this.editcarbmin;
+  this.shared.mmm.tarcarbmax = this.editcarbmax;
+  this.shared.mmm.tarfatmin = this.editfatmin;
+  this.shared.mmm.tarfatmax = this.editfatmax;
+  this.shared.mmm.tarpromin = this.editpromin;
+  this.shared.mmm.tarpromax = this.editpromax;
+  this.data1.updateUserData(this.shared.mmm.email, this.shared.mmm);
+  this.display = false;
 }
 delete(x, i, date) {
   this.FoodList.splice(i, 1);
@@ -278,24 +282,36 @@ let cc = this.shared.calories;
 
   this.calorieTrack = this.shared.calories.split(',');
   this.calorieDate = this.shared.calorieDate.split(',');
-console.log(this.trackDate);
+  this.carbsTrack = this.shared.carbs.split(',');
+  this.proteinTrack = this.shared.proteins.split(',');
+  this.fatTrack = this.shared.fats.split(',');
+console.log(this.fatTrack);
   const x = this.calorieDate.indexOf(`${this.trackDate}`);
 
   if (this.calorieDate.indexOf(`${this.trackDate}`) === -1) {
     this.shared.calories = this.shared.calories + `,${this.d}` ;
+    this.shared.carbs = this.shared.carbs + `,${this.b}` ;
+    this.shared.proteins = this.shared.proteins + `,${this.c}` ;
+    this.shared.fats = this.shared.fats + `,${this.a}` ;
     this.shared.calorieDate = this.shared.calorieDate + `,${this.trackDate}`;
 
 } else {
   console.log("index is "+x);
 this.calorieTrack[x] = this.d;
 this.calorieDate[x] = this.trackDate;
+this.proteinTrack[x] = this.c;
+this.fatTrack[x] = this.a;
+this.carbsTrack[x] = this.b;
 
 this.shared.calories = this.calorieTrack.join();
+this.shared.carbs = this.carbsTrack.join();
+this.shared.proteins = this.proteinTrack.join();
+this.shared.fats = this.fatTrack.join();
   this.shared.calorieDate = this.calorieDate.join();
 
 }
 
-this.shared.sadcas(this.shared.calories,this.shared.calorieDate);
+this.shared.sadcas(this.shared.calories,this.shared.calorieDate,this.shared.carbs,this.shared.proteins,this.shared.fats);
 
   });
   console.log(cc +' '+ this.shared.calories);

@@ -38,11 +38,11 @@
 
             <p>
               <label>
-                <input class="with-gap " name="group3" type="radio" />
+                <input class="with-gap " value="male" [(ngModel)]="gender" name="group3" type="radio" />
                 <span style="padding-right:5px">Male</span>
               </label>
               <label>
-                <input class="with-gap" name="group3" type="radio" />
+                <input class="with-gap" value="female" [(ngModel)]="gender" name="group3" type="radio" />
                 <span>Female</span>
               </label>
             </p>
@@ -56,8 +56,8 @@
               <input type="number" id="height" name="height">
             </div>
 
-            <mat-form-field style="margin-top:10px">
-              <mat-select [(ngModel)]="work" name="work">
+            <mat-form-field style="margin-top:12px">
+              <mat-select style="height:21px;" [(ngModel)]="work" name="work"placeholder="Favorite food">
                 <mat-option value="1">Little/No Exercise</mat-option>
                 <mat-option value="2">Moderate Exercise</mat-option>
                 <mat-option value="3">Intense Exercise</mat-option>
@@ -68,7 +68,13 @@
           </form>
         </div>
         <div class="col calculate">
-          <a class="caloriebtn" (click)="calculate()">Calculate</a>
+          <a class="caloriebtn" (click)="calculateCalories()">Calculate</a>
+          <div class="res">
+
+            <div *ngIf="loader" class="lds-facebook"><div></div><div></div><div></div></div>
+            <p *ngIf="!loader" class="calorievalue">{{editcalorie}}</p>
+          </div>
+
         </div>
       </div>
 

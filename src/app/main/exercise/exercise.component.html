@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col s6">
-    <div class="content">
+    <div style="margin-left: 20px;" class="content">
 				<div class="grid">
 					<figure (click)="showDialog()" class="effect-sadie">
 						<img src="assets/Images/run.jpeg" alt="img02"/>
@@ -14,8 +14,8 @@
 					<figure class="effect-sadie">
 						<img src="assets/Images/jog.jpeg" alt="img14"/>
 						<figcaption>
-								<h4>Running</h4>
-							<p>Click to add running time</p>
+								<h4>Jogging</h4>
+							<p>Click to add Jogging time</p>
 
 						</figcaption>
 					</figure>
@@ -24,8 +24,8 @@
 					<figure class="effect-sadie">
 						<img src="assets/Images/bic.jpg" alt="img14"/>
 						<figcaption>
-                <h4>Running</h4>
-                <p>Click to add running time</p>
+                <h4>Cycling</h4>
+                <p>Click to add Cycling time</p>
 
 						</figcaption>
 					</figure>
@@ -34,8 +34,8 @@
 					<figure class="effect-sadie">
 						<img src="assets/Images/swim.jpeg" alt="img14"/>
 						<figcaption>
-                <h4>Running</h4>
-                <p>Click to add running time</p>
+                <h4>Swimming</h4>
+                <p>Click to add Swimming time</p>
 
 						</figcaption>
 					</figure>
@@ -44,8 +44,8 @@
 					<figure class="effect-sadie">
 						<img src="assets/Images/dance.jpeg" alt="img14"/>
 						<figcaption>
-                <h4>Running</h4>
-                <p>Click to add running time</p>
+                <h4>Dancing</h4>
+                <p>Click to add Dancing time</p>
 
 						</figcaption>
 					</figure>
@@ -53,17 +53,38 @@
 
 			</div>
 </div>
-<div style="position: relative" class="col s6">
-  <p class="cal"><span  style="font-size: 100px;" span>1000</span>Calories</p>
-</div>
-</div>
-<p-dialog   [(visible)]="display" [modal]="true" [responsive]="true" [positionLeft]="404" [positionTop]="71" [width]="350" [minWidth]="200" [minY]="70"
-[dismissableMask]="true" >
-<h5>Update weight</h5>
+<div  class="col s6 left">
+    <button class="calender button" (click)="picker.open()">
+        <i style="padding-top: 5px" ></i>I exercised on
+      </button>
+  <div>
 
+    <h5 class=" amber-text "   style="margin-top: 20px; margin-bottom: 0px">Augest 2018</h5>
+    <h4 class=" amber-text "  style="margin: 0">{{zz | date : 'd'}}</h4>
+  </div>
+    <mat-form-field style="opacity:0 ; height:0px; width: 0px; position: absolute;top: -6px; left: 32px">
+      <input matInput [matDatepicker]="picker" [(ngModel)]="zz" (ngModelChange)="onChange($event)" name="date">
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+
+<div class="cal">
+  <p style="text-align: center;"><span  style="font-size: 70px; color: #34495e" span>{{calories}}</span>Cal</p></div>
+  <p *ngIf="quot" class="quot red-text">Start to Exercise</p>
+  <p *ngIf="!quot" class="quot amber-text">You are half way</p>
+  <p *ngIf="!quot" class="quot  green-text">Great acheived target</p>
+</div>
+</div>
+<p-dialog   [(visible)]="display" [modal]="true" [responsive]="true" [positionLeft]="404" [positionTop]="71" [width]="350" [height]="400" [minWidth]="200" [minY]="70"
+[dismissableMask]="true" >
+<h5>Running</h5>
+<p style="color: red">Approximate calories used (burned) by a 65-kg man</p>
+
+<label class="lable">Time spent on running in min</label>
+<input class="browser-default" type="number" [(ngModel)]="run" pInputText />
 
 <p-footer>
     <button class="waves-effect  btn-flat"  (click)="display=false" >Close</button>
-    <button class="waves-effect  btn-flat"   >Update</button>
+    <button class="waves-effect  btn-flat" (click)="calcRun()"  >save</button>
 </p-footer>
 </p-dialog>

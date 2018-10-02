@@ -17,7 +17,7 @@ export class AuthService {
   newUser = new EventEmitter;
     userdetails: Users = {
     username: '',
-    email: '',
+    email: 'blisstonkirubha@gmail.com',
     photourl: '',
     id: ''
   };

@@ -27,6 +27,10 @@
   animation: animate 2s infinite;
 
 }
+.cdk-overlay-pane
+{
+  position: relative !important;
+}
 .box span:nth-child(2) {
   animation-delay: -0.2s;
 
@@ -246,13 +250,18 @@ input[type="number"] {
   margin-left: 30%;
   cursor: pointer;
 }
-
+.calculate {
+  position: relative;
+}
 .caloriebtn:hover {
   color: white !important;
   background-color: #f1c40f !important;
   border: 2px solid #f1c40f;
 }
-
+.calorievalue {
+  font-size: 37px;
+  color: #777 !important;
+}
 .featuresmain {
   height: 77vh;
   margin-top: 80px;
@@ -323,7 +332,47 @@ input {
     color: rgb(70, 69, 69);
   }
 }
-
+.res{
+  position: absolute;
+  top: 90px;
+  left: 34%;
+}
 .features:hover {
   transform: translateY(-15px) scale(1.03);
+}
+.lds-facebook {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 6px;
+  width: 13px;
+  background: #f1c40f;
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.lds-facebook div:nth-child(1) {
+  left: 6px;
+  animation-delay: -0.24s;
+}
+.lds-facebook div:nth-child(2) {
+  left: 26px;
+  animation-delay: -0.12s;
+}
+.lds-facebook div:nth-child(3) {
+  left: 45px;
+  animation-delay: 0;
+}
+@keyframes lds-facebook {
+  0% {
+    top: 6px;
+    height: 51px;
+  }
+  50%, 100% {
+    top: 19px;
+    height: 26px;
+  }
 }

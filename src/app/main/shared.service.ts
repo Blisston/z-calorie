@@ -25,6 +25,9 @@ editpromin=0;
 editfatmin=0;
 editfatmax =0;
 calories='';
+carbs='';
+fats='';
+proteins='';
 calorieDate='';
 mmm;
 date = new Date();
@@ -141,12 +144,18 @@ console.log("ind" + index);}
       this.editpromax = a.tarpromax;
       this.calories = a.calories;
       this.calorieDate = a.caloriedate;
+      this.fats = a.fats;
+      this.carbs = a.carbs;
+      this.proteins = a.proteins;
       console.log('new '+ this.calorieDate);
 
   });
 }
-sadcas(x,y) {
+sadcas(x,y,u,z,t) {
   this.mmm.calories = x;
   this.mmm.caloriedate = y;
+  this.mmm.carbs= u;
+  this.mmm.proteins = z;
+  this.mmm.fats = t;
 }
 }

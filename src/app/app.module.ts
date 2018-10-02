@@ -42,6 +42,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import {MessageService} from 'primeng/api';
 import { GraphComponent } from './main/graph/graph.component';
 import {SelectButtonModule} from 'primeng/selectbutton';
+import {InputMaskModule} from 'primeng/inputmask';
 import 'materialize-css';
 import { MaterializeModule } from 'angular2-materialize';
 import {DialogModule} from 'primeng/dialog';
@@ -100,6 +101,7 @@ const config = {
      MatIconModule,
      MatCardModule,
      MatNativeDateModule,
+     InputMaskModule,
      MatProgressSpinnerModule,
      MatDatepickerModule,
      AngularFireModule.initializeApp(config),
