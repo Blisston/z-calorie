@@ -2,13 +2,13 @@
 <div class="wrapper">
   <div class="container">
     <div *ngIf="register">
-      <h1 *ngIf="olduser">Welcome</h1>
-      <h1 *ngIf="!olduser">Create your account</h1>
+      <h1 *ngIf="auth.olduser">Welcome</h1>
+      <h1 *ngIf="!auth.olduser">Create your account</h1>
 
-      <form   *ngIf="olduser" class="form">
-        <input type="text" class="browser-default" placeholder="Username">
-        <input type="password" class="browser-default" placeholder="Password">
-        <button type="submit" id="login-button">Login</button>
+      <form   *ngIf="auth.olduser" class="form">
+        <input type="text" [(ngModel)]="userdetails.email" name="username" class="browser-default" placeholder="Username">
+        <input type="password" [(ngModel)]="pass" class="browser-default" name="pass" placeholder="Password">
+        <button type="submit" (click)="loginWithEmail()" id="login-button">Login</button>
         <br>
         <a (click)="login()" class="social-button" id="google-connect">
           <span>Google</span>
@@ -16,11 +16,11 @@
         <br>
         <a style="cursor: pointer" (click)="toggle()" class="register">Register here</a>
       </form>
-      <form *ngIf="!olduser" class="form">
+      <form *ngIf="!auth.olduser" class="form">
         <input type="text" class="browser-default"  [(ngModel)]="userdetails.name" name="username" placeholder="Username">
         <input type="email" class="browser-default" [(ngModel)]="userdetails.email" name="email" placeholder="Email">
-        <input type="password" class="browser-default" placeholder="Password">
-        <button type="submit" (click)="user()" id="login-button">Create Account</button>
+        <input type="password" class="browser-default" name="pass" [(ngModel)]="pass" placeholder="Password">
+        <button type="submit" (click)="emailLogin()" id="login-button">Create Account</button>
         <br>
         <a style="cursor: pointer" (click)="toggle()" class="register">Already a member ? Sign in</a>
       </form>

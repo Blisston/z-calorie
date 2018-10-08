@@ -82,6 +82,9 @@ calculateCalories() {
     this.editcalorie = this.editcalorie * 1.4;
   }
   console.log(this.editcalorie);
+  if(this.editcalorie === NaN) {
+    this.editcalorie = 'Enter valid input';
+  }
   setTimeout(()=> { this.loader = false; }, 3000);
 }
 }

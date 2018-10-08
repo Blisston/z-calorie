@@ -73,6 +73,7 @@ calories: '',
   editcarbmax = 231;
   editpromin = 100;
   load = false;
+  pass = 'dfknlnk';
 editcalorie;
 unsubs: Subscription;
 
@@ -89,7 +90,7 @@ activityLevel: SelectItem[];
 selectedActivityLevel: string[] = [];
 
 
-  constructor( private auth: AuthService,
+  constructor( public auth: AuthService,
      private data: DataService, private ref: ChangeDetectorRef,
       private router: Router,
     private zone: NgZone   ) {
@@ -110,7 +111,7 @@ selectedActivityLevel: string[] = [];
   ngOnInit() {}
 
   toggle() {
-    this.olduser = !this.olduser;
+    this.auth.olduser = !this.auth.olduser;
   }
   physicaltog() {
     const self = this;
@@ -231,5 +232,13 @@ calculateCalories() {
 }
 ngOnDestroy() {
   //this.unsubs.unsubscribe();
+}
+emailLogin() {
+  console.log(this.pass);
+this.auth.signUpWithEmail(this.userdetails.email , this.pass);
+}
+loginWithEmail() {
+  console.log(this.pass);
+  this.auth.loginWithEmail(this.userdetails.email, this.pass);
 }
 }
