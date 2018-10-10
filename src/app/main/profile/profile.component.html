@@ -15,7 +15,7 @@
       <p>{{userdetails.gender}}</p>
       <p>{{weightDisplay}}&nbsp;kg </p>
       <p>{{userdetails.height}}&nbsp;cm tall</p>
-      <p>I am{{userdetails.activity}} active</p>
+      <p>I am &nbsp;{{userdetails.activity}} active</p>
       <a class="weightupdate modal-trigger" (click)="openModal(1)"  data-target="modal3"><i class="fa fa-pencil-square"></i>Edit your info</a><br>
       <a class="weightupdate "(click)="showDialog()" ><i class="fa fa-pencil-square" ></i>Update you weight</a>
 
@@ -39,23 +39,23 @@
       <label class="lable">Name: &nbsp; &nbsp; &nbsp; &nbsp;</label>
       <input class="browser-default inp" type="text" [(ngModel)]="userdetails.name" pInputText /><br><br>
       <label class="lable">Age: &nbsp; &nbsp; &nbsp; &nbsp;</label>
-      <input class="browser-default inp" type="text" [(ngModel)]="userdetails.age" pInputText /><br><br>
+      <input style="margin-left: 12px" class="browser-default inp" type="text" [(ngModel)]="userdetails.age" pInputText /><br><br>
       <label class="lable">Height: &nbsp; &nbsp; &nbsp; &nbsp;</label>
       <input class="browser-default inp" type="text" [(ngModel)]="userdetails.height" pInputText /><br><br>
       <label class="lable">Gender: &nbsp; &nbsp; &nbsp; &nbsp;</label>
-      <p-radioButton name="groupname" value="male" label="male" [(ngModel)]="userdetails.gender">Male</p-radioButton>&nbsp;
+      <p-radioButton name="groupname" value="male" label="Male" [(ngModel)]="userdetails.gender">Male</p-radioButton>&nbsp;
       <p-radioButton name="groupname" value="female" label="Female" [(ngModel)]="userdetails.gender">Female</p-radioButton>
 <br>
 <br>
 <label class="lable">Activity: &nbsp; &nbsp; &nbsp; &nbsp;</label>
-      <p-radioButton name="groupname1" value="Low" [(ngModel)]="userdetails.activity">Low</p-radioButton>&nbsp;
-      <p-radioButton name="groupname1" value="Medium"  [(ngModel)]="userdetails.activity">Medium</p-radioButton>&nbsp;
-      <p-radioButton name="groupname1" value="High"  [(ngModel)]="userdetails.activity">High</p-radioButton>&nbsp;
+      <p-radioButton name="groupname1" value="Low" label="Low" [(ngModel)]="userdetails.activity">Low</p-radioButton>&nbsp;
+      <p-radioButton name="groupname1" value="Medium" label="Medium" [(ngModel)]="userdetails.activity">Medium</p-radioButton>&nbsp;
+      <p-radioButton name="groupname1" value="High" label="High" [(ngModel)]="userdetails.activity">High</p-radioButton>&nbsp;
       <br><br>
       <label class="lable">I want to: &nbsp; &nbsp; &nbsp; &nbsp;</label>
-      <p-radioButton name="groupname2" value="Lose"  [(ngModel)]="userdetails.weightgoal">Lose weight</p-radioButton>&nbsp;
-      <p-radioButton name="groupname2" value="Maintain" [(ngModel)]="userdetails.weightgoal">Maintain</p-radioButton>&nbsp;
-      <p-radioButton name="groupname2" value="Gain"  [(ngModel)]="userdetails.weightgoal">Gain weight</p-radioButton>&nbsp;
+      <p-radioButton name="groupname2" value="Lose" label="Lose Weight" [(ngModel)]="userdetails.weightgoal">Lose weight</p-radioButton>&nbsp;
+      <p-radioButton name="groupname2" value="Maintain"label="Maintain" [(ngModel)]="userdetails.weightgoal">Maintain</p-radioButton>&nbsp;
+      <p-radioButton name="groupname2" value="Gain" label="Gain Weight" [(ngModel)]="userdetails.weightgoal">Gain weight</p-radioButton>&nbsp;
     </div>
     </div>
     <div class="modal-footer">
@@ -67,8 +67,7 @@
   <p-dialog   [(visible)]="display" [modal]="true" [responsive]="true" [positionLeft]="404" [positionTop]="71" [width]="350" [minWidth]="200" [minY]="70"
   [dismissableMask]="true" >
   <h5>Update weight</h5>
-        {{updateWeight}}
-        <label class="lable">New Weight: &nbsp; &nbsp; &nbsp; &nbsp;</label>
+        <label style="width: 100%" class="lable">New Weight: &nbsp; &nbsp; &nbsp; &nbsp;</label>
               <input class="browser-default inp" type="text" name="updateWeight" [(ngModel)]="updateWeight" pInputText /><br><br>
 
   <p-footer>

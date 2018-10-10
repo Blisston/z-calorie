@@ -17,10 +17,7 @@ body {
      zoom: 1.3;
    // add prefixed versions too.
 }
-// .cdk-overlay-connected-position-bounding-box
-// {
-//   left: 868px !important;
-// }
+
 .modal-overlay
 {
   display: none !important;
@@ -36,4 +33,7 @@ body .ui-dialog .ui-dialog-content
 {
   max-height: 350px !important;
   height: 300px !important;
+}
+body .ui-inputtext {
+  width: 30% !important;
 }

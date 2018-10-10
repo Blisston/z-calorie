@@ -22,7 +22,6 @@ import {MatInputModule,
  import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
  import {RadioButtonModule} from 'primeng/radiobutton';
  import {MatDatepickerModule} from '@angular/material/datepicker';
- import {TooltipModule} from 'primeng/tooltip';
  import {SliderModule} from 'primeng/slider';
  import {ToastModule} from 'primeng/toast';
 import { AppComponent } from './app.component';

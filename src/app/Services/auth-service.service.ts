@@ -2,6 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import {Router} from '@angular/router';
+import { Subject } from 'rxjs';
 
 interface Users {
   username;
@@ -14,13 +15,16 @@ interface Users {
   providedIn: 'root'
 })
 export class AuthService {
-  newUser = new EventEmitter;
+  newUser = new Subject;
+  invalid = new EventEmitter;
+  existinguser = new EventEmitter;
     userdetails: Users = {
     username: '',
     email: 'blisstonkirubha@gmail.com',
     photourl: '',
     id: ''
   };
+  error = false;
   olduser = true;
   constructor(public fauth: AngularFireAuth, private router: Router) { }
 
@@ -37,40 +41,48 @@ export class AuthService {
        this.userdetails.photourl = res.user.photoURL;
        if (res.additionalUserInfo.isNewUser) {
          this.olduser = !this.olduser;
-         this.newUser.emit(true);
+         this.newUser.next(true);
          console.log('new user');
        } else {
-        this.newUser.emit(false);
+        this.newUser.next(false);
         this.router.navigate(['main']);
          console.log('existing user');
        }
       });
 
 }
-signUpWithEmail(email, password: string) {
-  return this.fauth.auth.createUserWithEmailAndPassword(email, password)
+signUpWithEmail(email, password: string, displayName) {
+  this.fauth.auth.createUserWithEmailAndPassword(email, password)
     .then((user) => {
       if (user.additionalUserInfo.isNewUser)
       {
+        this.userdetails.email =  email;
+        this.userdetails.username = displayName;
+        //this.userdetails.photourl = res.user.photoURL;
 
-        this.newUser.emit(true);
+        this.invalid.emit(true);
          console.log('new user');
       }
 
       console.log(user.additionalUserInfo.isNewUser);
     })
     .catch(error => {
-        console.log(error);
-      
+      this.invalid.emit(false);
+      console.log(error);
+      return error;
+
     });
 }
 loginWithEmail(email , password: string) {
   console.log('sad');
   return this.fauth.auth.signInWithEmailAndPassword(email, password)
     .then((user) => {
+      this.router.navigate(['main']);
 console.log(user);
     })
     .catch(error => {
+      this.existinguser.emit(false);
+      this.error = true;
       console.log(error)
     });
 }

@@ -54,7 +54,7 @@ export class ExerciseComponent implements OnInit {
       console.log(this.exercise);
       this.calories = this.exercise[this.dates];
 
-      if(this.calories.toString == '') {
+      if(this.calories == '') {
         this.calories = 0;
       }
     });
@@ -65,7 +65,7 @@ onChange(ds) {
   const xx = new Date(ds);
   this.dates = xx.getDate();
   this.calories = this.exercise[this.dates];
-if(this.calories.toString == '') {
+if(this.calories == '') {
   this.calories = 0;
 }
 }

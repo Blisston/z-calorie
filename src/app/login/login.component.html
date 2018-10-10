@@ -1,3 +1,4 @@
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
 
 <div class="wrapper">
   <div class="container">
@@ -5,7 +6,7 @@
       <h1 *ngIf="auth.olduser">Welcome</h1>
       <h1 *ngIf="!auth.olduser">Create your account</h1>
 
-      <form   *ngIf="auth.olduser" class="form">
+      <form *ngIf="auth.olduser" class="form">
         <input type="text" [(ngModel)]="userdetails.email" name="username" class="browser-default" placeholder="Username">
         <input type="password" [(ngModel)]="pass" class="browser-default" name="pass" placeholder="Password">
         <button type="submit" (click)="loginWithEmail()" id="login-button">Login</button>
@@ -17,7 +18,7 @@
         <a style="cursor: pointer" (click)="toggle()" class="register">Register here</a>
       </form>
       <form *ngIf="!auth.olduser" class="form">
-        <input type="text" class="browser-default"  [(ngModel)]="userdetails.name" name="username" placeholder="Username">
+        <input type="text" class="browser-default" [(ngModel)]="userdetails.name" name="username" placeholder="Username">
         <input type="email" class="browser-default" [(ngModel)]="userdetails.email" name="email" placeholder="Email">
         <input type="password" class="browser-default" name="pass" [(ngModel)]="pass" placeholder="Password">
         <button type="submit" (click)="emailLogin()" id="login-button">Create Account</button>
@@ -27,89 +28,89 @@
     </div>
     <div *ngIf="!register">
       <div *ngIf="physical">
-      <form class="form">
-          <div id="modal8" [style.display]="display" class="modal modal-fixed-footer" >
-              <div class="modal-content">
-                <h5 style="margin-bottom: 20px;">Additional details</h5>
-<label class="radiohead">I Want to</label>
-       <mat-radio-group class="ra" [(ngModel)]="userdetails.weightgoal" name="weightGoal">
-        <mat-radio-button style="margin-right: 10px" value="Lose">Lose</mat-radio-button>
-        <mat-radio-button style="margin-left: 10px" value="Maintain">Maintain</mat-radio-button>
-        <mat-radio-button style="margin-left: 10px" value="Gain">Gain</mat-radio-button>
+        <form class="form">
+          <div id="modal8" [style.display]="display" class="modal modal-fixed-footer">
+            <div class="modal-content">
+              <h5 style="margin-bottom: 20px;">Additional details</h5>
+              <label class="radiohead">I Want to</label>
+              <mat-radio-group class="ra" [(ngModel)]="userdetails.weightgoal" name="weightGoal">
+                <mat-radio-button style="margin-right: 10px" value="Lose">Lose</mat-radio-button>
+                <mat-radio-button style="margin-left: 10px" value="Maintain">Maintain</mat-radio-button>
+                <mat-radio-button style="margin-left: 10px" value="Gain">Gain</mat-radio-button>
 
-      </mat-radio-group>
-      <label class="radiohead">Activty </label>
-<mat-radio-group class="ra" [(ngModel)]="userdetails.activity" name="activityLevel">
-  <mat-radio-button style="margin-right: 10px" value="Low">Low</mat-radio-button>
-  <mat-radio-button style="margin-left: 10px" value="Medium">Medium</mat-radio-button>
-  <mat-radio-button style="margin-left: 10px" value="High">High</mat-radio-button>
+              </mat-radio-group>
+              <label class="radiohead"> Daily Activty </label>
+              <mat-radio-group class="ra" [(ngModel)]="userdetails.activity" name="activityLevel">
+                <mat-radio-button style="margin-right: 10px" value="Low">Low</mat-radio-button>
+                <mat-radio-button style="margin-left: 10px" value="Medium">Medium</mat-radio-button>
+                <mat-radio-button style="margin-left: 10px" value="High">High</mat-radio-button>
 
-</mat-radio-group>
-<label class="radiohead">Body Fat</label>
-<mat-radio-group class="ra" [(ngModel)]="userdetails.bodyFat" name="bodyfat">
-  <mat-radio-button style="margin-right: 10px" value="Low">Low</mat-radio-button>
-  <mat-radio-button style="margin-left: 10px" value="Medium">Medium</mat-radio-button>
-  <mat-radio-button style="margin-left: 10px" value="High">High</mat-radio-button>
+              </mat-radio-group>
+              <label class="radiohead">Body Fat</label>
+              <mat-radio-group class="ra" [(ngModel)]="userdetails.bodyFat" name="bodyfat">
+                <mat-radio-button style="margin-right: 10px" value="Low">Low</mat-radio-button>
+                <mat-radio-button style="margin-left: 10px" value="Medium">Medium</mat-radio-button>
+                <mat-radio-button style="margin-left: 10px" value="High">High</mat-radio-button>
 
-</mat-radio-group>
-              </div>
-              <div class="modal-footer">
-                  <a class=" modal-action modal-close waves-effect waves-yellow btn-flat" (click)="saveAdditional()">Save </a>
-                <a class=" modal-action modal-close waves-effect waves-yellow btn-flat" (click)="toggleDisplay()" >Close</a>
-              </div>
+              </mat-radio-group>
             </div>
-        <input type="number" class="browser-default" [(ngModel)]="userdetails.height" name="height" placeholder="Height">
-        <input type="number" class="browser-default" [(ngModel)]="userdetails.weight" name="weight" placeholder="Weight">
-        <input type="number" class="browser-default" [(ngModel)]="userdetails.age" name="age" placeholder="Age">
+            <div class="modal-footer">
+              <a class=" modal-action modal-close waves-effect waves-yellow btn-flat" (click)="saveAdditional()">Save
+              </a>
+              <a class=" modal-action modal-close waves-effect waves-yellow btn-flat" (click)="toggleDisplay()">Close</a>
+            </div>
+          </div>
+          <input type="number" class="browser-default" [(ngModel)]="userdetails.height" name="height" placeholder="Height">
+          <input type="number" class="browser-default" [(ngModel)]="userdetails.weight" name="weight" placeholder="Weight">
+          <input type="number" class="browser-default" [(ngModel)]="userdetails.age" name="age" placeholder="Age">
 
-       <mat-radio-group class="ra" [(ngModel)]="userdetails.gender" name="gender">
+          <mat-radio-group class="ra" [(ngModel)]="userdetails.gender" name="gender">
             <mat-radio-button style="margin-right: 10px" value="male">Male</mat-radio-button>
             <mat-radio-button style="margin-left: 10px" value="female">Female</mat-radio-button>
           </mat-radio-group>
-          <a class=" add modal-trigger"(click)="toggleDisplay()"  data-target="modal8" >Additionl info</a><br>
-          <button type="submit" id="login-button" (click)="back()" >Back</button><br>
-        <button type="submit" id="login-button" (click)="physicaltog()">Next</button>
-        <br>
+          <a class=" add modal-trigger" (click)="toggleDisplay()" data-target="modal8">Additionl info</a><br>
+          <button type="submit" id="login-button" (click)="physicaltog()">Next</button>
+          <br>
 
-      </form>
-    </div>
-    <div *ngIf="!physical">
-        <div id="modal7" [style.display]="display" class="modal modal-fixed-footer" >
-            <div class="modal-content">
-              <h5>Target Nutrition</h5>
-
-
-              <div class="row">
-                  <label class="lable">Calories: &nbsp; &nbsp; &nbsp; &nbsp;</label>
-                  <input class="browser-default inp" type="text" [(ngModel)]="editcalorie" pInputText /><br><br>
-                  <label class="lable">Carbs: &nbsp; &nbsp; &nbsp; &nbsp;</label>
-                  <input style="margin-left: 16px;" class="browser-default inp" type="text" [(ngModel)]="editcarbmin" pInputText />&nbsp; &nbsp;
-                  <input class="browser-default inp" type="text" [(ngModel)]="editcarbmax" pInputText /><br><br>
-                  <label class="lable">Protein: &nbsp; &nbsp; &nbsp; &nbsp;</label>
-                  <input style="margin-left: 6px;" class="browser-default inp" type="text" [(ngModel)]="editpromin" pInputText />&nbsp; &nbsp;
-                  <input class="browser-default inp" type="text" [(ngModel)]="editpromax" pInputText /><br><br>
-                  <label class="lable">Fats: &nbsp; &nbsp; &nbsp; &nbsp;</label>
-                  <input style="margin-left: 28px;" class="browser-default inp" type="text" [(ngModel)]="editfatmin" pInputText />&nbsp; &nbsp;
-                  <input class="browser-default inp" type="text" [(ngModel)]="editfatmax" pInputText />
-
-                        </div>
+        </form>
+      </div>
+      <div *ngIf="!physical">
+        <div id="modal7" [style.display]="display" class="modal modal-fixed-footer">
+          <div class="modal-content">
+            <h5>Target Nutrition</h5>
 
 
-
-            </div>
-            <div class="modal-footer">
-                <a class=" modal-action modal-close waves-effect waves-yellow btn-flat" (click)="save()">Save </a>
-              <a class=" modal-action modal-close waves-effect waves-yellow btn-flat" (click)="toggleDisplay()" >Close</a>
+            <div class="row">
+              <label class="lable">Calories: &nbsp; &nbsp; &nbsp; &nbsp;</label>
+              <input class="browser-default inp" type="text" [(ngModel)]="editcalorie" pInputText /><br><br>
+              <label class="lable">Carbs: &nbsp; &nbsp; &nbsp; &nbsp;</label>
+              <input style="margin-left: 16px;" class="browser-default inp" type="text" [(ngModel)]="editcarbmin"
+                pInputText />&nbsp; &nbsp;
+              <input class="browser-default inp" type="text" [(ngModel)]="editcarbmax" pInputText /><br><br>
+              <label class="lable">Protein: &nbsp; &nbsp; &nbsp; &nbsp;</label>
+              <input style="margin-left: 6px;" class="browser-default inp" type="text" [(ngModel)]="editpromin"
+                pInputText />&nbsp; &nbsp;
+              <input class="browser-default inp" type="text" [(ngModel)]="editpromax" pInputText /><br><br>
+              <label class="lable">Fats: &nbsp; &nbsp; &nbsp; &nbsp;</label>
+              <input style="margin-left: 28px;" class="browser-default inp" type="text" [(ngModel)]="editfatmin"
+                pInputText />&nbsp; &nbsp;
+              <input class="browser-default inp" type="text" [(ngModel)]="editfatmax" pInputText />
             </div>
           </div>
+          <div class="modal-footer">
+            <a class=" modal-action modal-close waves-effect waves-yellow btn-flat" (click)="save()">Save </a>
+            <a class=" modal-action modal-close waves-effect waves-yellow btn-flat" (click)="toggleDisplay()">Close</a>
+          </div>
+        </div>
         <form class="form">
 
 
 
 
-            <p>Suggested Calorie&nbsp;:2400 <br><a class=" edit modal-trigger"(click)="toggleDisplay()"  data-target="modal7">Edit target</a></p>
-            <button type="submit" id="login-button" (click)="physicaltog()" >Back</button><br>
-          <button type="submit" id="login-button" (click)="submit1()" >Submit</button>
+          <p>Suggested Calorie&nbsp;:2400</p> <button id="login-button"  class="modal-trigger" (click)="toggleDisplay()" data-target="modal7">Edit
+              target</button><br>
+          <button type="submit" id="login-button" (click)="physicaltog()">Back</button><br>
+          <button type="submit" id="login-button" (click)="submit1()">Submit</button>
           <br>
 
 
@@ -132,5 +133,3 @@
     <li></li>
   </ul>
 </div>
-
-
