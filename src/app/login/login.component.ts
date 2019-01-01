@@ -312,7 +312,10 @@ export class LoginComponent implements OnInit, OnDestroy {
         }
       });
     } else {
-      this.showError('Invalid input', 'Please enter valid input');
+      if(this.pass.length < 6) {
+        this.showError('Password length', 'Password atleast 6 characters');
+      } else {
+      this.showError('Invalid input', 'Please enter valid input'); }
     }
   }
   loginWithEmail() {

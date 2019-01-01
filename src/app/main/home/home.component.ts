@@ -81,15 +81,18 @@ editpromax ;
 editpromin;
 editfatmin;
 editfatmax ;
+piepro;
+piefat;
+piecarb;
 rangeValues: number[] = [0,  100];
 date;
-zz = new Date()
+zz = new Date();
 xx = new Date();
 servingtime = '';
 abc: Food = {
   food : '',
   date : '',
-  servingtime: '',
+  servingtime: '1',
   fav: false,
 };
 a = 0 ;
@@ -109,6 +112,7 @@ tarcarbmin;
 tarcarbmax;
 trackDate ;
 calorieTrack = [];
+text = false;
 carbsTrack = [];
 proteinTrack = [];
 fatTrack = [];
@@ -116,6 +120,7 @@ calorieDate = [];
 loader = true;
 addCalor = 0;
 me = false;
+but = false;
 display: boolean = false;
 display1: boolean = false;
 showDialog() {
@@ -125,13 +130,14 @@ showDialog1() {
   this.display1 = true;
 }
 constructor(private foodservice: FooddataService, private data1: DataService, private shared: SharedService) {
+
   this.shared.date = this.zz;
   this.shared.xx();
 
   this.data1.userdetails.subscribe(a => {
     this.userDetails = a;
     this.ini();
-  })
+  });
 
 
 
@@ -147,33 +153,42 @@ ini()
     this.editpromax = this.shared.editpromax;
 
     this.addedCalorie();
-    console.log('cons');
 
-    console.log('sixe00'+ this.shared.getsize());
+
+
     if(this.shared.getsize() === 0) {
       this.loader = false;
+      this.text = true;
     }
     this.me=true;
     this.sum();
 
 }
   ngOnInit() {
-    this.trackDate= this.shared.currentdate;
-    console.log('sdfa'+ this.trackDate);
-    this.onChange(new Date(2018,9,this.trackDate));
-    console.log('ng');
+    const x1 = this.shared.currentdate;
+    let y = this.shared.currentmonth + '';
+    if (y.length < 2) {
+      y =  '0' + '' + y;
+    }
+    this.trackDate= y + '' + x1;
+
+    this.onChange(new Date(2018, +this.shared.currentmonth, this.shared.currentdate));
+
     this.FoodList = this.shared.getFood();
     this.shared.changed.subscribe(x => {
-      this.trackDate = this.shared.currentdate;
+      const x1 = this.shared.currentdate;
+      const y= this.shared.currentmonth;
+      this.trackDate = y + '' + x1;
       this.FoodList = x;
       const actual = this.shared.getsize();
-      console.log(this.me);
+      console.log(this.FoodList);
 
       if (actual == this.FoodList.length) {
         this.loader = false;
+        this.text = false;
       }
 if(this.me) {
-  console.log('h');
+
       this.sum();}
       else {
         this.ini();
@@ -185,7 +200,7 @@ if(this.me) {
 
   }
   openModal() {
-    console.log('dsa');
+
     this.modalActions.emit({action: 'modal', params : ['open']});
   }
   closeModal() {
@@ -200,16 +215,23 @@ if(this.me) {
     this.shared.date = this.zz;
     this.xx = new Date(newValue);
 const x = this.xx.getDate();
-this.trackDate = x;
-this.shared.currentdate = this.trackDate;
+let y = this.xx.getMonth() + '';
+if (y.length < 2) {
+  y =  '0' + '' + y;
+
+}
+this.trackDate = y + '' + x;
+this.shared.currentdate = x;
+this.shared.currentmonth = y;
 console.log(this.trackDate);
 
     this.FoodList = [];
     this.shared.Food = [];
-    this.shared.foodData(x);
+    this.shared.foodData(this.trackDate);
     this.loader = true;
     if(this.shared.getsize() === 0) {
       this.loader = false;
+      this.text = true;
     }
 }
   ate(x,y) {
@@ -217,8 +239,8 @@ console.log(this.trackDate);
     this.shared.date = this.zz;
     this.abc.food = x;
     this.date = new Date(this.xx);
-    this.abc.date = this.date.getDate();
-    this.abc.servingtime = this.servingtime;
+    this.abc.date = this.trackDate;
+    this.text = false;
 if(this.FoodList.length ===0){
 
   this.data1.addFoodData(this.abc);
@@ -233,15 +255,19 @@ break;
 }
   if(this.exist)
    {
-    this.abc.servingtime = '2';
+    console.log(+this.abc.servingtime );
+    this.abc.servingtime = (+this.abc.servingtime + 1) + '';
+
     this.shared.update(x, this.abc , this.trackDate);
   } else {
+    this.abc.servingtime = '1';
     this.data1.addFoodData(this.abc);
     this.FoodList.push(y);
   }
 
  this.addedCalorie();
  this.sum();
+ this.text = false;
 }
 
 save() {
@@ -259,33 +285,37 @@ delete(x, i, date) {
   this.FoodList.splice(i, 1);
   this.shared.Food = [];
 this.shared.delete(x,this.trackDate);
+
 this.sum();
 
 }
-handleChange(e) {
 
-  // this.editcarbmin = e.values[0];
-  // this.editcarbmax = e.values[1];
-}
 
 sum() {
+  console.log(this.FoodList);
+  this.text = false;
   let xb=0;
   this.a = this.b = this.c = this.d = 0;
   const bb = this.shared.calorieDate;
 let cc = this.shared.calories;
+
   this.FoodList.forEach(a => {
+
     xb++;
    this.a = Math.floor(this.a + a.recipe.totalNutrients.FAT.quantity);
    this.b = Math.floor(this.b + a.recipe.totalNutrients.CHOCDF.quantity);
    this.c = Math.floor(this.c + a.recipe.totalNutrients.PROCNT.quantity);
    this.d = Math.floor(this.d + a.recipe.calories);
-
+const total = this.a + this.b + this.c;
+this.piecarb = (this.b / total) * 100;
+this.piepro = (this.c / total) * 100;
+this.piefat = (this.a / total) * 100;
   this.calorieTrack = this.shared.calories.split(',');
   this.calorieDate = this.shared.calorieDate.split(',');
   this.carbsTrack = this.shared.carbs.split(',');
   this.proteinTrack = this.shared.proteins.split(',');
   this.fatTrack = this.shared.fats.split(',');
-console.log(this.fatTrack);
+  console.log(this.calorieDate.indexOf(`${this.trackDate}`));
   const x = this.calorieDate.indexOf(`${this.trackDate}`);
 
   if (this.calorieDate.indexOf(`${this.trackDate}`) === -1) {
@@ -296,7 +326,7 @@ console.log(this.fatTrack);
     this.shared.calorieDate = this.shared.calorieDate + `,${this.trackDate}`;
 
 } else {
-  console.log("index is "+x);
+
 this.calorieTrack[x] = this.d;
 this.calorieDate[x] = this.trackDate;
 this.proteinTrack[x] = this.c;
@@ -310,7 +340,7 @@ this.shared.fats = this.fatTrack.join();
   this.shared.calorieDate = this.calorieDate.join();
 
 }
-
+this.text = false;
 this.shared.sadcas(this.shared.calories,this.shared.calorieDate,this.shared.carbs,this.shared.proteins,this.shared.fats);
 
   });
@@ -325,11 +355,11 @@ cc=this.shared.calories;
     labels: ['FAT', 'Carbs', 'Protein'],
     datasets: [
         {
-            data: [this.a, this.b, this.c],
+            data: [this.piefat, this.piecarb, this.piepro],
             backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
+                "#660099",
+                "FF0000",
+                "#003366"
             ]
         }]
     };
@@ -345,9 +375,6 @@ cc=this.shared.calories;
       }
   };
 }
-fav(x) {
-
-}
 
 
 searchFood() {
@@ -357,7 +384,9 @@ searchFood() {
 
 }
 ngOnDestroy() {
-  this.shared.currentdate = this.trackDate;
+  console.log('fsdfsd' +this.trackDate);
+  this.shared.currentmonth = this.trackDate.substring(0, 2);
+  this.shared.currentdate = this.trackDate.substring(2, 4);
   this.FoodList = [];
   this.shared.Food = [];
 }

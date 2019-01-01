@@ -22,6 +22,9 @@
 {
   display: none !important;
 }
+.mb {
+  margin-bottom: 0px !important;
+}
 .card-content {
   padding: 5px;
   position: relative;
@@ -243,4 +246,49 @@
   100% {
     transform: rotate(360deg);
   }
+}
+.empty
+{
+  font-size: 15px;
+  color: white;
+  text-align: center;
+  margin-top: 40px
+}
+.calenderposi
+{
+opacity:0 ;
+height:0px;
+ width: 0px;
+ position: absolute;
+ top: -6px;
+  left: 320px
+}
+
+@media only screen and (max-width: 600px) {
+.leftside {
+  margin-left: 8px !important;
+  margin-right: 8px !important;
+  width: 300px !important;
+  margin-bottom: 20ppx;
+}
+.calender {
+  left: 182px;
+}
+.rightside {
+  width: 315px !important;
+  margin-top: 10px !important;
+}
+.fa-ellipsis-v, .fa-plus-circle {
+  left: 178px !important;
+}
+.calenderposi
+{
+opacity:0 ;
+height:0px;
+ width: 0px;
+ position: absolute;
+ top: 18px;
+  left: 390px
+}
+
 }

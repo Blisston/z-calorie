@@ -29,11 +29,37 @@ body {
 .input-field label {
   top:0 !important;
 }
+
 body .ui-dialog .ui-dialog-content
 {
-  max-height: 350px !important;
-  height: 300px !important;
+  max-height: 388px !important;
+  height: 388px !important;
 }
 body .ui-inputtext {
   width: 30% !important;
+}
+@media (max-width: 768px) {
+body .ui-dialog {
+left:1px !important;
+    width: 314px !important;}
+body .ui-inputtext {
+  width: 75% !important;
+}
+
+}
+::-webkit-scrollbar {
+  width: 8px;
+
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #a6a6a6;
+  box-shadow: inset 0 0 6px, rgba(0,0,0,.3)
+}
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: inset 0 0 6px, rgba(0,0,0,.3)
+
 }

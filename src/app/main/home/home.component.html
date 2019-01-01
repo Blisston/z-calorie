@@ -1,18 +1,18 @@
 <div class="row home">
 
-  <div  class="col s6 leftside">
+  <div  class="col s12 m6 l6 leftside">
       <div>
 
-          <h5 class=" amber-text " style="margin-top: 20px; margin-bottom: 0px">Augest 2018</h5>
+          <h5 class=" amber-text " style="margin-top: 20px; margin-bottom: 0px">{{zz| date : 'MMMM' }} 2018</h5>
           <h4 class=" amber-text " style="margin: 0">{{zz | date : 'd'}}</h4>
         </div>
-          <mat-form-field style="opacity:0 ; height:0px; width: 0px; position: absolute;top: -6px; left: 320px">
+          <mat-form-field class="calenderposi">
             <input matInput [matDatepicker]="picker" [(ngModel)]="zz" (ngModelChange)="onChange($event)" name="date">
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
 
 
-          <button class="calender tryoutbutton" (click)="picker.open()">
+          <button [disabled]="loader" class="calender tryoutbutton" (click)="picker.open()">
             <i style="padding-top: 5px" class="fa fa-calendar right"></i>Go to
           </button>
 
@@ -21,24 +21,17 @@
       <div class="col s6">
         <h6 class="left-align">Current totals</h6>
         <div class="col s6 ">
-          <p class="left-align bold">Calories
+          <p style="color: #8B88FF" class="left-align bold">Calories
           </p>
           <br>
-          <p class=" purple-textleft-align bold">Carbs
+          <p style="color: #FF0000" class=" purple-textleft-align bold">Carbs
           </p>
-          <p class=" left-align green-text text-darken-3 bold">Protein
+          <p style="color:#003366" class=" left-align green-text text-darken-3 bold">Protein
           </p>
-          <p class=" amber-text text-darken-3left-align bold">Fat
+          <p style="color: #660099" class=" amber-text text-darken-3left-align bold">Fat
           </p>
           <br>
-          <p class=" purple-text teal-text darken-3left-align">Calories
-          </p>
-          <p class=" purple-textleft-align">Calories
-          </p>
-          <p class=" purple-textleft-align">Calories
-          </p>
-          <p class=" purple-textleft-align">Calories
-          </p>
+
         </div>
         <div class="col s6">
           <p class=" purple-textleft-align">{{d}}
@@ -51,17 +44,10 @@
           <p class=" purple-textleft-align">{{a}}
           </p>
           <br>
-          <p class=" purple-textleft-align">2100
-          </p>
-          <p class=" purple-textleft-align">2100
-          </p>
-          <p class=" purple-textleft-align">2100
-          </p>
-          <p class=" purple-textleft-align">2100
-          </p>
+
         </div>
       </div>
-      <div *ngIf="me" class="col s6" style="position: relative;">
+      <div *ngIf="me" class="col m6 s6 l6" style="position: relative;">
         <h6 class="left-align">Target values</h6><span><a class=" editbtn modal-trigger" (click)="showDialog()" data-target="modal2">Edit</a></span>
         <p class=" purple-textleft-align">{{this.editcalorie}}
       </p>
@@ -73,16 +59,13 @@
         <p class=" purple-textleft-align">{{this.editfatmin}}-{{this.editfatmax}}
         </p>
         <br>
-        <p class=" purple-textleft-align">2100
-        </p>
-        <p class=" purple-textleft-align">2100
-        </p>
+
       </div>
     </div>
   </div>
-  <div class="col s6 rightside" [@listAnimation]="FoodList.length">
+  <div class="col s12 l6 rightside" [@listAnimation]="FoodList.length">
       <button class="button modal-trigger" (click)="showDialog1()">Add Food</button>
-
+    <p *ngIf="text" class="empty">Click on Add Food to add items</p>
   <div id="modal1"  class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions" style="width:50%; height: 350px;z-index: 1000000">
       <div class="modal-content">
        </div>
@@ -103,7 +86,7 @@
             </mat-menu>
           <h6 >{{food.recipe.label}}</h6>
           <p>{{food.recipe.calories   |number: '1.0-0'}} Calories</p>
-          <p>{{food.recipe.totalTime}}Servings</p>
+          <p>{{+food.recipe.totalTime +1}}Servings</p>
         </div>
 
       </div>
@@ -148,19 +131,18 @@
 
 
 
-<p-dialog   [(visible)]="display1" [modal]="true" [responsive]="true" [positionLeft]="404" [positionTop]="71" [height]="400"  [width]="400" [minWidth]="200" [minY]="70"
+<p-dialog class="searchfood" header="Add Food"  [(visible)]="display1" [modal]="true" [responsive]="true" [positionLeft]="404" [positionTop]="30" [height]="400"  [width]="409" [minWidth]="200" [minY]="70"
 [dismissableMask]="true" >
 
-<h5>Add Food</h5>
 
-<div class="row">
+<div class="row mb">
   <form class="col s12">
-    <div class="row modal-form-row">
+    <div class="row modal-form-row mb">
       <div class="input-field col s12">
         <input id="food" [(ngModel)]="search" name="search" type="text" class="validate" tooltipPosition="top" pTooltip="Enter your username">
         <label for="food">Enter recipe</label>
       </div>
-      <button class="waves-effect waves-light btn " (click)="searchFood()">Search</button>
+      <button class="waves-effect waves-light btn-small" (click)="searchFood()">Search</button>
 
     </div>
 

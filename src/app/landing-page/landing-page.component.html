@@ -1,13 +1,14 @@
 <header>
-  <div class="background" @explain>
+  <div id="food" class="background" @explain>
 
 
     <div class="navbar1 bordera">
-      <a>FOOD</a>
-      <a>EXERCISE</a>
-      <a>TRY</a>
-      <a>CONTACT</a>
-      <a (click)="login()">LOGIN</a>
+      <a scrollTo href="#Food">FOOD</a>
+
+      <a scrollTo href="#try">TRY</a>
+      <a scrollTo href="#features">FEATURES</a>
+      <a scrollTo href="#footer">CONTACT</a>
+      <a  (click)="login()">LOGIN</a>
     </div>
     <div class="headBack">
       <h1 class="anim">EAT
@@ -17,7 +18,9 @@
       </h1>
     </div>
     <div class="headbottom ">
-      <a class="tryoutbutton anim">Give it a shot</a>
+        <a (click)="login()"  class="tryoutbutton anim log">LOGIN</a>
+        <br>
+      <a scrollTo href="#try" class="tryoutbutton anim">Give it a shot</a>
       <div class="box">
         <span></span>
         <span></span>
@@ -25,10 +28,10 @@
       </div>
     </div>
   </div>
-  <div class="try">
+  <div id="try" class="try">
     <div class="formsty">
       <div class="row">
-        <div class="col s6">
+        <div class="col s12 l6">
           <form>
             <div class="input-field">
               <label for="age">Age</label>
@@ -57,7 +60,7 @@
             </div>
 
             <mat-form-field style="margin-top:12px">
-              <mat-select style="height:21px;" [(ngModel)]="work" name="work"placeholder="Favorite food">
+              <mat-select style="height:21px;" [(ngModel)]="work" name="work"placeholder="Activity">
                 <mat-option value="1">Little/No Exercise</mat-option>
                 <mat-option value="2">Moderate Exercise</mat-option>
                 <mat-option value="3">Intense Exercise</mat-option>
@@ -67,7 +70,7 @@
 
           </form>
         </div>
-        <div class="col calculate">
+        <div class="col s12 l6 calculate">
           <a class="caloriebtn" (click)="calculateCalories()">Calculate</a>
           <div class="res">
 
@@ -80,44 +83,44 @@
 
     </div>
   </div>
-  <div class=" featuresmain">
+  <div id="features" class=" featuresmain">
     <div class="row">
-      <div class="col s3 features">
+      <div class="col s12 l3 features">
         <div class="feature-box">
           <i class="icon icon-basic-world"></i>
           <h5>Check Calorie</h5>
           <p class="feature-box__text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur.
+            Check the calorie value of the food you like to eat
           </p>
         </div>
       </div>
 
-      <div class="col s3 features">
+      <div class="col s12 l3 features">
         <div class="feature-box">
           <i class="icon icon-basic-world"></i>
           <h5>Track Calories</h5>
           <p class="feature-box__text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur.
+            Track your daily calorie intake by adding in the table
           </p>
         </div>
       </div>
 
-      <div class="col s3 features">
+      <div class="col s12 l3 features">
+        <div class="feature-box">
+          <i class="icon icon-basic-world"></i>
+          <h5>Track Exercise</h5>
+          <p class="feature-box__text">
+            Exercise daily to burn the extra calorie consumed
+          </p>
+        </div>
+      </div>
+
+      <div class="col s12 l3 features">
         <div class="feature-box">
           <i class="icon icon-basic-world"></i>
           <h5>Set Goals</h5>
           <p class="feature-box__text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur.
-          </p>
-        </div>
-      </div>
-
-      <div class="col s3 features">
-        <div class="feature-box">
-          <i class="icon icon-basic-world"></i>
-          <h5>Chat with bot</h5>
-          <p class="feature-box__text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur.
+            Set your daily calorie, carbs, protein and fat intake goals
           </p>
         </div>
       </div>
@@ -125,28 +128,27 @@
     </div>
   </div>
 </header>
-<footer class="page-footer">
+<footer id="footer" class="page-footer">
   <div class="container">
     <div class="row">
       <div class="col l6 s12">
-        <h5 class="white-text">Footer Content</h5>
-        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+        <h5 class="white-text">Z-Calorie</h5>
+        <p class="grey-text text-lighten-4">Provide feedback to blisstonkirubha@gmail.com</p>
       </div>
       <div class="col l4 offset-l2 s12">
-        <h5 class="white-text">Links</h5>
+        <h5 class="white-text">Resources</h5>
         <ul>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+          <li><a class="grey-text text-lighten-3" href="https://www.edamam.com/">Food API</a></li>
+          <li><a class="grey-text text-lighten-3" href="https://www.calculators.org/health/calorie-burn-rate.php">Exercise calories</a></li>
+
         </ul>
       </div>
     </div>
   </div>
   <div class="footer-copyright">
     <div class="container">
-    © 2014 Copyright Text
-    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+  Blisston kirubha
+    <a class="grey-text text-lighten-4 right" href="#!"></a>
     </div>
   </div>
 </footer>

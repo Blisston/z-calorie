@@ -20,7 +20,7 @@ export class AuthService {
   existinguser = new EventEmitter;
     userdetails: Users = {
     username: '',
-    email: 'blisstonkirubha@gmail.com',
+    email: '',
     photourl: '',
     id: ''
   };
@@ -77,6 +77,8 @@ loginWithEmail(email , password: string) {
   console.log('sad');
   return this.fauth.auth.signInWithEmailAndPassword(email, password)
     .then((user) => {
+      this.userdetails.email = email;
+
       this.router.navigate(['main']);
 console.log(user);
     })

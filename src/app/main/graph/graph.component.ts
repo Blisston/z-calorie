@@ -73,7 +73,15 @@ export class GraphComponent implements OnInit {
   }
 
   calorieChart() {
-    console.log(this.tarCalorie);
+    console.log(this.calorieDate);
+    const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct", "Nov", "Dec"];
+    for(let i=0 ; i< this.calorieDate.length ;  i++) {
+      const x = this.calorieDate[i];
+      const y = month[+x.substring(0,2)];
+      const z = x.substring(2,4);
+      console.log(z+y);
+      this.calorieDate[i] = z+y;
+    }
     this.data = {
       labels: this.calorieDate,
       datasets: [
@@ -81,19 +89,19 @@ export class GraphComponent implements OnInit {
               label: 'Calories',
               data: this.calorie,
               fill: false,
-              borderColor: '#4bc0c0'
+              borderColor: '#8B88FF'
           },
             {
                 label: 'Target Calorie',
                 data: this.tarCalorie,
                 fill: false,
-                borderColor: '#4bc0c0'
+                borderColor: '#EEDB00'
             },
             {
               label: 'Calories burned',
               data: this.exercise,
               fill: false,
-              borderColor: '#4bc0c0'
+              borderColor: '#FF9C00'
           }
       ]
   };
@@ -104,7 +112,7 @@ export class GraphComponent implements OnInit {
             label: 'Carbs',
             data: this.carbs,
             fill: false,
-            borderColor: '#4bc0c0'
+            borderColor: '#FF0000'
         },
     ]
 };
@@ -115,7 +123,7 @@ this.data2 = {
           label: 'Protein',
           data: this.proteins,
           fill: false,
-          borderColor: '#4bc0c0'
+          borderColor: '#003366'
       },
   ]
 };
@@ -126,7 +134,7 @@ this.data3 = {
           label: 'Fats',
           data: this.fats,
           fill: false,
-          borderColor: '#4bc0c0'
+          borderColor: '#660099'
       },
   ]
 };

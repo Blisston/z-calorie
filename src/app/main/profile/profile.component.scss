@@ -19,7 +19,15 @@
   cursor: pointer;
 
 }
-.btn
+.mx
 {
-
+  width:50%; height: 350px;
+}
+@media only screen and (max-width: 600px) {
+.details {
+  padding-left: 20px;
+}
+.mx {
+  width: 95% !important;
+}
 }

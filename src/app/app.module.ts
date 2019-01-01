@@ -46,6 +46,9 @@ import 'materialize-css';
 import { MaterializeModule } from 'angular2-materialize';
 import {DialogModule} from 'primeng/dialog';
 import { ExerciseComponent } from './main/exercise/exercise.component';
+import {ScrollToModule} from 'ng2-scroll-to';
+
+
 
 
 const routes: Routes = [
@@ -57,17 +60,18 @@ const routes: Routes = [
   {path: 'Profile', component: ProfileComponent},
   {path: 'Graph', component: GraphComponent},
   {path: 'Exercise', component: ExerciseComponent},
+
 ]},
 
-]
+];
 const config = {
-  apiKey: 'AIzaSyBI4Xq9-lcks-X7zXJZo-T2sj2mOaBDrQw',
-  authDomain: 'login-1526286516019.firebaseapp.com',
-  databaseURL: 'https://login-1526286516019.firebaseio.com',
-  projectId: 'login-1526286516019',
-  storageBucket: 'login-1526286516019.appspot.com',
-  messagingSenderId: '602135765232'
-};
+    apiKey: "AIzaSyDmF1oytdSvOpbyBTfms1qDpIvOgSE1qs8",
+    authDomain: "z-calorie.firebaseapp.com",
+    databaseURL: "https://z-calorie.firebaseio.com",
+    projectId: "z-calorie",
+    storageBucket: "z-calorie.appspot.com",
+    messagingSenderId: "988913518214"
+  };
 
 @NgModule({
   declarations: [
@@ -79,7 +83,8 @@ const config = {
     ProfileComponent,
     HomeComponent,
     GraphComponent,
-    ExerciseComponent
+    ExerciseComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -113,6 +118,7 @@ const config = {
      SliderModule,
      ToastModule,
      SelectButtonModule,
+     ScrollToModule.forRoot(),
     InputTextModule  ],
   providers: [FooddataService, MessageService],
   bootstrap: [AppComponent]

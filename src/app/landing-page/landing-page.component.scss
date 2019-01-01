@@ -119,7 +119,7 @@ input:-webkit-autofill:active {
   font-size: 360%;
   font-weight: 700;
   padding-left: 10%;
-  background: linear-gradient(rgba(241, 196, 15, 0.8), rgba(241, 196, 15, 0.8)), url("../../assets/Images/Food.jpeg");
+  background-image: linear-gradient(rgba(241, 196, 15, 0.8), rgba(241, 196, 15, 0.8)), url("../../assets/Images/Food.jpeg");
   background-position: center;
   background-size: cover;
   color: rgba(0, 0, 0, 0);
@@ -132,7 +132,7 @@ h1 span {
   position: absolute;
   left: 10%;
   top: 88%;
-  background: linear-gradient(rgba(241, 196, 15, 0.8), rgba(241, 196, 15, 0.8)), url("../../assets/Images/Food.jpeg");
+  background-image: linear-gradient(rgba(241, 196, 15, 0.8), rgba(241, 196, 15, 0.8)), url("../../assets/Images/Food.jpeg");
   background-position: center;
   background-size: cover;
   -webkit-background-clip: text;
@@ -337,6 +337,10 @@ input {
   top: 90px;
   left: 34%;
 }
+.log
+{
+  display: none;
+}
 .features:hover {
   transform: translateY(-15px) scale(1.03);
 }
@@ -374,5 +378,50 @@ input {
   50%, 100% {
     top: 19px;
     height: 26px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .headBack {
+    left:9%;
+    width: 82%;
+  }
+  .navbar1 {
+    display: none;
+  }
+  .headbottom {
+    left: 47%;
+  }
+  .formsty {
+    width: 70%;
+
+  }
+  .formsty .calculate {
+    margin-top: 0%;
+    height: 75px;
+  }
+  .caloriebtn {
+    margin-left: -8%;
+  }
+  .features {
+    width: 100% !important;
+    margin-bottom: 20px;
+  }
+  .featuresmain {
+    height: 100% !important;
+  }
+  .log
+  {
+    display: block;
+    padding-left: 49px;
+  }
+  .res{
+    position: absolute;
+    top: 40px;
+    left: 18%;
+
+  }
+  .tryoutbutton
+  {
+    padding: 8px 10px
   }
 }

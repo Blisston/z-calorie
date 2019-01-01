@@ -25,7 +25,6 @@ tarfatmax ;
 tarcalorie;
 
 
-
 }
 @Component({
   selector: 'app-exercise',
@@ -35,26 +34,35 @@ tarcalorie;
 
 export class ExerciseComponent implements OnInit {
   run;
-  display: boolean = false;
+  display = false;
   calories = 0;
   exercise = [];
-  zz = 2;
+  zz = new Date();
   quot =true;
   dates = new Date().getDate();
+  a =false;
+b =false;
+c =false;
+d =false;
+e =false;
+
 
   userdetails: Users;
   constructor(private data: DataService,private auth: AuthService, private shared: SharedService) { }
 
   ngOnInit() {
+    console.log(this.zz);
     this.data.getUserData(this.auth.userdetails.email);
     this.data.userdetails.subscribe( a => {
 
       this.userdetails = a;
       this.exercise = a.exercise.split(',');
       console.log(this.exercise);
+      console.log(this.dates);
       this.calories = this.exercise[this.dates];
-
-      if(this.calories == '') {
+      console.log(this.calories);
+      if(this.calories == undefined || this.calories == +'') {
+        console.log('undefinedddfxf');
         this.calories = 0;
       }
     });
@@ -65,17 +73,35 @@ onChange(ds) {
   const xx = new Date(ds);
   this.dates = xx.getDate();
   this.calories = this.exercise[this.dates];
-if(this.calories == '') {
+if(this.calories == undefined || this.calories == +'') {
   this.calories = 0;
 }
 }
-  showDialog() {
+  showDialog(x) {
+    this.a = this.b = this.c = this.d = this.e = false;
       this.display = true;
+      if(x == 1) {
+        this.a = true;
+      }
+      if(x == 2) {
+        this.b = true;
+      }
+      if(x == 3) {
+        this.c = true;
+      }
+      if(x == 4) {
+        this.d = true;
+      }
+      if(x == 5) {
+        this.e = true;
+      }
   }
   calcRun() {
 
     const  x = + 6 *this.run;
+    console.log(this.calories);
     this.calories = +this.calories + x;
+    console.log(this.calories);
     this.exercise[this.dates] = this.calories;
     this.userdetails.exercise = this.exercise.join();
     console.log(this.userdetails);

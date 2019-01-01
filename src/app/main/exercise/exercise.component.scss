@@ -195,3 +195,41 @@ figure.effect-sadie:hover p {
   top: 90px !important;
   left: 577px !important;
 }
+.content {
+  margin-left: 20px;
+}
+@media only screen and (max-width: 600px) {
+  .leftside {
+
+    width: 300px !important;
+    margin-bottom: 20ppx;
+  }
+  .row1 {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    width: 200px !important;
+  }
+  .grid figure {
+    min-width: 298px !important;
+  }
+  .calender {
+    left: 182px;
+  }
+  .content
+  {
+    margin-left: 0px !important;
+  }
+  .rightside {
+    width: 315px !important;
+    margin-top: 10px !important;
+  }
+  .fa-ellipsis-v, .fa-plus-circle {
+    left: 178px !important;
+  }
+  .left {
+    margin-left: 8px !important;
+    margin-right: 8px !important;
+    width: 300px !important;
+    height: 60vh;
+  }
+  }

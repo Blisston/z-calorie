@@ -1,13 +1,13 @@
 
-<div *ngIf="z1" style="background-color: rgb(236, 235, 235);height: 100%">
+<div *ngIf="z1" style="background-color: rgb(236, 235, 235);height: 100%; ">
 <div class="row" >
 
-  <div class="col s6">
-    <div class="col s6">
+  <div class="col s12 l6">
+    <div class="col s12 l6">
       <h5>My Profile</h5>
       <img class="profile-img" src={{userdetails.photourl}} height="150px;">
     </div>
-    <div style="margin-left: -19px;margin-top: 30px" class="col s6">
+    <div style="margin-left: -19px;margin-top: 30px" class="col s12 l6">
       <div class="details">
       <p>{{userdetails.name}}</p>
       <p>{{userdetails.email}}</p>
@@ -23,7 +23,7 @@
       </div>
     </div>
   </div>
-  <div class="col s6"></div>
+  <div class="col s12 l6"></div>
 
 </div>
 <p-toast ></p-toast>
@@ -32,7 +32,7 @@
 
 
   <!-- Modal Structure -->
-  <div id="modal3" class="modal modal-fixed-footer" style="width:50%; height: 350px;"  materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
+  <div id="modal3" class="modal mx modal-fixed-footer"  materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
     <div class="modal-content">
       <div *ngIf="z1">
       <h6>Update your profile</h6>

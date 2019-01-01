@@ -1,8 +1,8 @@
-<div class="row">
-  <div class="col s6">
-    <div style="margin-left: 20px;" class="content">
+<div class="row row1">
+  <div class="col leftside s12 l6 m6">
+    <div style="" class="content">
 				<div class="grid">
-					<figure (click)="showDialog()" class="effect-sadie">
+					<figure (click)="showDialog(1)" class="effect-sadie">
 						<img src="assets/Images/run.jpeg" alt="img02"/>
 						<figcaption>
 							<h4>Running</h4>
@@ -11,7 +11,7 @@
           </figure>
           </div>
           <div style="padding-top: 60px" class="grid">
-					<figure class="effect-sadie">
+					<figure (click)="showDialog(3)" class="effect-sadie">
 						<img src="assets/Images/jog.jpeg" alt="img14"/>
 						<figcaption>
 								<h4>Jogging</h4>
@@ -21,7 +21,7 @@
 					</figure>
         </div>
         <div style="padding-top: 60px" class="grid">
-					<figure class="effect-sadie">
+					<figure (click)="showDialog(4)" class="effect-sadie">
 						<img src="assets/Images/bic.jpg" alt="img14"/>
 						<figcaption>
                 <h4>Cycling</h4>
@@ -31,7 +31,7 @@
 					</figure>
         </div>
         <div style="padding-top: 60px" class="grid">
-					<figure class="effect-sadie">
+					<figure (click)="showDialog(2)" class="effect-sadie">
 						<img src="assets/Images/swim.jpeg" alt="img14"/>
 						<figcaption>
                 <h4>Swimming</h4>
@@ -41,7 +41,7 @@
 					</figure>
         </div>
         <div style="padding-top: 60px" class="grid">
-					<figure class="effect-sadie">
+					<figure (click)="showDialog(5)" class="effect-sadie">
 						<img src="assets/Images/dance.jpeg" alt="img14"/>
 						<figcaption>
                 <h4>Dancing</h4>
@@ -53,7 +53,7 @@
 
 			</div>
 </div>
-<div  class="col s6 left">
+<div  class="col s12 l6 left">
     <button class="calender button" (click)="picker.open()">
         <i style="padding-top: 5px" ></i>I exercised on
       </button>
@@ -77,14 +77,26 @@
 </div>
 <p-dialog   [(visible)]="display" [modal]="true" [responsive]="true" [positionLeft]="404" [positionTop]="71" [width]="350" [height]="400" [minWidth]="200" [minY]="70"
 [dismissableMask]="true" >
-<h5>Running</h5>
+<h5 *ngIf="a">Running</h5>
+<h5 *ngIf="b">Swiming</h5>
+<h5 *ngIf="c">Jogging</h5>
+<h5 *ngIf="d">Cycling</h5>
+<h5 *ngIf="e">Dancing</h5>
 <p style="color: red">Approximate calories used (burned) by a 65-kg man</p>
 
-<label class="lable">Time spent on running in min</label>
+<label *ngIf="a" class="lable">Time spent on Running in min</label>
+<label *ngIf="b" class="lable">Time spent on Swiming in min</label>
+<label *ngIf="c" class="lable">Time spent on Jogging in min</label>
+<label *ngIf="d" class="lable">Time spent on Cycling in min</label>
+<label *ngIf="e" class="lable">Time spent on Dancing in min</label>
 <input class="browser-default" type="number" [(ngModel)]="run" pInputText />
 
 <p-footer>
     <button class="waves-effect  btn-flat"  (click)="display=false" >Close</button>
-    <button class="waves-effect  btn-flat" (click)="calcRun()"  >save</button>
+    <button *ngIf="a" class="waves-effect  btn-flat" (click)="calcRun()"  >save</button>
+    <button *ngIf="b" class="waves-effect  btn-flat" (click)="calcSwim()"  >save</button>
+    <button *ngIf="c" class="waves-effect  btn-flat" (click)="calcJog()"  >save</button>
+    <button *ngIf="d" class="waves-effect  btn-flat" (click)="calcCyc()"  >save</button>
+    <button *ngIf="e" class="waves-effect  btn-flat" (click)="calcDan()"  >save</button>
 </p-footer>
 </p-dialog>

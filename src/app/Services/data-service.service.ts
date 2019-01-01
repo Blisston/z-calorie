@@ -86,8 +86,6 @@ export class DataService {
     });
   }
   updateUserData(email, userdet) {
-    console.log(`${email}/${this.key.id}`);
-    console.log('ghcccccccccccccccccccccccccccccccccccccccccccccccccccccccc');
     this.itemdoc = this.afs.doc(`${email}/${this.key.id}`);
     this.itemdoc.update(userdet);
   }
